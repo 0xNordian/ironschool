@@ -12,10 +12,10 @@
 /modules.xml
 /*.iml
 /modules
- *.iml
- *.ipr
- log/
- target/
+*.iml
+*.ipr
+log/
+target/
 #Project-format
 *.iws
 #IntelliJ
