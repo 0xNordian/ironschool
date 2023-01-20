@@ -9,6 +9,12 @@ public class Student extends Person{
         super(personalName, email, address);
         setEnrolled(false);
     }
+    /*
+private List<Person> personList;
+public PersonsList(){
+personList = new ArrayList<>();}
+inicializar las List<> en el constructor como ArrayList
+ */
 
     public boolean isEnrolled() {
         return isEnrolled;

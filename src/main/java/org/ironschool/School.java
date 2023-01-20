@@ -16,7 +16,12 @@ public class School {
         this.expenses=0.;
         this.profits=0.;
     }
-
+/*
+private List<Person> personList;
+public PersonsList(){
+personList = new ArrayList<>();}
+inicializar las List<> en el constructor como ArrayList
+ */
 
     public String getSchoolName() {
         return schoolName;

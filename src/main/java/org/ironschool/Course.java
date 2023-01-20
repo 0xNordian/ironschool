@@ -16,6 +16,12 @@ public class Course {
         setCourseName(courseName);
         setPrice(price);
     }
+    /*
+private List<Person> personList;
+public PersonsList(){
+personList = new ArrayList<>();}
+inicializar las List<> en el constructor como ArrayList
+ */
 
 
     public String getCourseId() {

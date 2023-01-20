@@ -11,6 +11,12 @@ public class Teacher extends Person{
         setAssigned(false);
         setSalary(salary);
     }
+    /*
+private List<Person> personList;
+public PersonsList(){
+personList = new ArrayList<>();}
+inicializar las List<> en el constructor como ArrayList
+ */
 
     public double getSalary() {
         return salary;
