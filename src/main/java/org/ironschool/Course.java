@@ -1,13 +1,14 @@
 package org.ironschool;
 
 
+import java.util.List;
 import java.util.UUID;
 
 public class Course {
     private String courseId;
     private String courseName;
     private Teacher teacher;
-    private Student[] students;
+    private List<Student> students;
     private double price;
     private double courseRevenue;
 
@@ -21,7 +22,7 @@ public class Course {
         return courseId;
     }
 
-    public void setCourseId() {
+    private void setCourseId() {
        this.courseId = UUID.randomUUID().toString();
     }
 
@@ -30,6 +31,8 @@ public class Course {
     }
 
     public void setCourseName(String courseName) {
+        //Trim whitespace & blank
+        //standard format: Trim whitespace
         this.courseName = courseName;
     }
 
@@ -41,11 +44,12 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public Student[] getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Student[] students) {
+    public void setStudents(Student student) {
+        //añadir student a la lista
         this.students = students;
     }
 
@@ -54,6 +58,7 @@ public class Course {
     }
 
     public void setPrice(double price) {
+        //no puede ser negativo
         this.price = price;
     }
 
@@ -62,6 +67,7 @@ public class Course {
     }
 
     public void setCourseRevenue(double courseRevenue) {
+        //CourseRevenue +=
         this.courseRevenue = courseRevenue;
     }
 }

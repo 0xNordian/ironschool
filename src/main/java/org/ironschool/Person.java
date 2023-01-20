@@ -1,6 +1,6 @@
 package org.ironschool;
 import java.util.UUID;
-public class Person {
+public abstract class Person {
     private String personalId;
     private String personalName;
     private String email;
@@ -17,7 +17,7 @@ public class Person {
         return personalId;
     }
 
-    public void setPersonalId() {
+    private void setPersonalId() {
         this.personalId = UUID.randomUUID().toString();
     }
 
@@ -26,6 +26,8 @@ public class Person {
     }
 
     public void setPersonalName(String personalName) {
+        //String !empty !blank
+        //standard format: Trim whitespace & First capital letter
         this.personalName = personalName;
     }
 
@@ -34,6 +36,8 @@ public class Person {
     }
 
     public void setEmail(String email) {
+        //String !empty !blank
+        //standard format: Trim whitespace & lower case
         this.email = email;
     }
 
@@ -42,6 +46,8 @@ public class Person {
     }
 
     public void setAddress(String address) {
+        //String !empty !blank
+        //standard format: Trim whitespace
         this.address = address;
     }
 }

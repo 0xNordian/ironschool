@@ -1,12 +1,24 @@
 package org.ironschool;
+import java.util.List;
 
 public class Teacher extends Person{
     private boolean isAssigned;
-    private Course[] courses;
+    private List<Course> courses;
+    private double salary;
 
-    public Teacher(String personalName, String email, String address) {
+    public Teacher(String personalName, String email, String address, double salary) {
         super(personalName, email, address);
         setAssigned(false);
+        setSalary(salary);
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        //no puede ser negativo ni vacío
+        this.salary = salary;
     }
 
     public boolean isAssigned() {
@@ -17,11 +29,12 @@ public class Teacher extends Person{
         isAssigned = assigned;
     }
 
-    public Course[] getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(Course[] courses) {
+    public void setCourses(Course course) {
+        //añadir curso a la lista
         this.courses = courses;
     }
 }
