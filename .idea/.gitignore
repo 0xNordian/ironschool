@@ -1,0 +1,26 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# IntelliJ:user-specific
+/tasks.xml
+/usage.statistics.xml
+/dictionaries
+#Maven
+/artifacts
+/compiler.xml
+/jarRepositories.xml
+/modules.xml
+/*.iml
+/modules
+ *.iml
+ *.ipr
+ log/
+ target/
+#Project-format
+*.iws
+#IntelliJ
+out/
+/misc.xml
+/vcs.xml
+#Mac
+.DS_Store
