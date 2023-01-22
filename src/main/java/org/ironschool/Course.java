@@ -80,12 +80,9 @@ inicializar las List<> en el constructor como ArrayList
     @Override
     public String toString() {
         return "Course{" +
-                "courseId='" + courseId + '\'' +
-                ", courseName='" + courseName + '\'' +
-                ", teacher=" + teacher +
-                ", students=" + students +
+                "name='" + courseName + '\'' +
                 ", price=" + price +
-                ", courseRevenue=" + courseRevenue +
                 '}';
     }
+
 }

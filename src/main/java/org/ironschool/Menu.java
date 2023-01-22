@@ -37,11 +37,13 @@ import java.util.ArrayList;
             school.setTeachers(teachers);
             //System.out.println("Teacher: " + school.getTeachers());
             teachers = school.getTeachers();
-            for (Teacher teacherDetails : teachers) {
-                System.out.println("Teacher name: " + teacherDetails.getName());
-                System.out.println("Teacher email: " + teacherDetails.getEmail());
-                System.out.println("Teacher address: " + teacherDetails.getAddress());
-                System.out.println("Teacher salary: " + teacherDetails.getSalary());
+            int index = 0;
+            for (Teacher teacherDetail : teachers) {
+                System.out.println("Teacher " + (index + 1) + " name: " + teacherDetail.getName());
+                System.out.println("Teacher " + (index + 1) + " email: " + teacherDetail.getEmail());
+                System.out.println("Teacher " + (index + 1) + " address: " + teacherDetail.getAddress());
+                System.out.println("Teacher " + (index + 1) + " salary: " + teacherDetail.getSalary());
+                index++;
             }
 
 
@@ -59,7 +61,14 @@ import java.util.ArrayList;
                 courses.add(course);
             }
             school.setCourses(courses);
-            System.out.println("Course: " + school.getCourses());
+            //System.out.println("Course: " + school.getCourses());
+            courses = school.getCourses();
+            for (Course courseDetails : courses) {
+                index = 0;
+                System.out.println("Course " + (index + 1) + " name: " + courseDetails.getCourseName());
+                System.out.println("Course " + (index + 1) + " price: " + courseDetails.getPrice());
+                index++;
+            }
 
             /*
             // Create students
