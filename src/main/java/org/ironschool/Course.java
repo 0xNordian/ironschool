@@ -81,4 +81,13 @@ public class Course {
         //enroll student, then call setCourseRevenue.
         this.courseRevenue += price;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + courseName + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
 }

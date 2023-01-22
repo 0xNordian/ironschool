@@ -16,6 +16,7 @@
 *.ipr
 log/
 /target/*
+/target/
 #Project-format
 *.iws
 #IntelliJ
@@ -24,3 +25,6 @@ out/
 /vcs.xml
 #Mac
 .DS_Store
+/codeStyles/
+/libraries/
+/target/*
