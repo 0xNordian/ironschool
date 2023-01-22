@@ -1,4 +1,5 @@
 package org.ironschool;
+import java.util.ArrayList;
 import java.util.List;
 
 public class School {
@@ -15,30 +16,30 @@ public class School {
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
+        teachers = new ArrayList<>();
+        courses = new ArrayList<>();
+        students = new ArrayList<>();
     }
-/*
-private List<Person> personList;
-public PersonsList(){
-personList = new ArrayList<>();}
-inicializar las List<> en el constructor como ArrayList
- */
-
     public String getSchoolName() {
         return schoolName;
     }
 
     public void setSchoolName(String schoolName) {
-        //String !empty !blank
-        //standard format: Trim whitespace & First capital letter
-        this.schoolName = schoolName;
+       if (schoolName.isBlank()){
+           throw new IllegalArgumentException("Scholl name cannot be empty or blank");
+       }
+       String newSchoolName= schoolName.trim();
+       newSchoolName=newSchoolName.substring(0,1).toUpperCase() + newSchoolName.substring(1).toLowerCase();
+       this.schoolName=newSchoolName;
     }
+
 
     public List<Teacher> getTeachers() {
         return teachers;
     }
 
     public void setTeachers(Teacher teacher) {
-        //should be ArrayList & step1/1
+        this.teachers.add(teacher);
     }
 
     public List<Course> getCourses() {
@@ -46,7 +47,7 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setCourses(Course course) {
-        //añadir curso a la lista
+        this.courses.add(course);
     }
 
     public List<Student> getStudents() {
@@ -54,7 +55,7 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setStudents(Student student) {
-        //añadir student a la lista
+        this.students.add(student);
     }
 
     public double getSchoolRevenue() {
@@ -62,24 +63,32 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setSchoolRevenue(double schoolRevenue) {
-        //no puede ser negativo
-        this.schoolRevenue = schoolRevenue;
+        if (schoolRevenue<0){
+            throw new IllegalArgumentException("Revenue cannot be negative");
+        } else {
+            this.schoolRevenue += schoolRevenue;
+        }
     }
 
     public double getExpenses() {
+        setExpenses();
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
-        //no puede ser negativo
-        this.expenses = expenses;
+    public void setExpenses() {
+        double sumSalary=0;
+        for (Teacher t: teachers){
+            sumSalary+=t.getSalary();
+        }
+        this.expenses=sumSalary;
     }
 
     public double getProfits() {
+        setProfits();
         return profits;
     }
 
-    public void setProfits(double profits) {
-        this.profits = profits;
+    private void setProfits() {
+        this.profits= this.schoolRevenue-this.expenses;
     }
 }
