@@ -25,3 +25,6 @@ out/
 /vcs.xml
 #Mac
 .DS_Store
+/codeStyles/
+/libraries/
+/target/*

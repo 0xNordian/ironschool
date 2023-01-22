@@ -1,4 +1,5 @@
 package org.ironschool;
+import java.util.ArrayList;
 import java.util.List;
 
 public class School {
@@ -15,22 +16,21 @@ public class School {
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
+        teachers = new ArrayList<>();
+        courses = new ArrayList<>();
+        students = new ArrayList<>();
     }
-/*
-private List<Person> personList;
-public PersonsList(){
-personList = new ArrayList<>();}
-inicializar las List<> en el constructor como ArrayList
- */
-
     public String getSchoolName() {
         return schoolName;
     }
 
     public void setSchoolName(String schoolName) {
-        //String !empty !blank
-        //standard format: Trim whitespace & First capital letter
-        this.schoolName = schoolName;
+       if (schoolName.isBlank()){
+           throw new IllegalArgumentException("Scholl name cannot be empty or blank");
+       }
+       String newSchoolName= schoolName.trim();
+       newSchoolName=newSchoolName.substring(0,1).toUpperCase() + newSchoolName.substring(1).toLowerCase();
+       this.schoolName=newSchoolName;
     }
 
     public List<Teacher> getTeachers() {
@@ -38,7 +38,7 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setTeachers(Teacher teacher) {
-        //should be ArrayList & step1/1
+        this.teachers.add(teacher);
     }
 
     public List<Course> getCourses() {
@@ -46,7 +46,7 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setCourses(Course course) {
-        //añadir curso a la lista
+        this.courses.add(course);
     }
 
     public List<Student> getStudents() {
