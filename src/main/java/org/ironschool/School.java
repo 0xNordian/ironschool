@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class School {
-    private static String schoolName;
-    private static List<Teacher> teachers;
+    private String schoolName;
+    private List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
     private double schoolRevenue;
@@ -13,54 +13,48 @@ public class School {
 
     public School(String schoolName) {
         setSchoolName(schoolName);
-        this.teachers = new ArrayList<>();
-        this.students = new ArrayList<>();
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
+        teachers = new ArrayList<>();
+        courses = new ArrayList<>();
+        students = new ArrayList<>();
     }
-/*
-private List<Person> personList;
-public PersonsList(){
-personList = new ArrayList<>();}
-inicializar las List<> en el constructor como ArrayList
- */
-
-    public static String getSchoolName() {
+    public String getSchoolName() {
         return schoolName;
     }
 
     public void setSchoolName(String schoolName) {
-        //String !empty !blank
-        //standard format: Trim whitespace & First capital letter
-        this.schoolName = schoolName;
+       if (schoolName.isBlank()){
+           throw new IllegalArgumentException("Scholl name cannot be empty or blank");
+       }
+       String newSchoolName= schoolName.trim();
+       newSchoolName=newSchoolName.substring(0,1).toUpperCase() + newSchoolName.substring(1).toLowerCase();
+       this.schoolName=newSchoolName;
     }
 
-    public static List<Teacher> getTeachers() {
+    public List<Teacher> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(List<Teacher> teachers) {
-        //should be ArrayList & step1/1
-        this.teachers = teachers;
+    public void setTeachers(Teacher teacher) {
+        this.teachers.add(teacher);
     }
 
     public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
-        //añadir curso a la lista
-        this.courses = courses;
+    public void setCourses(Course course) {
+        this.courses.add(course);
     }
 
     public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> student) {
-        //añadir student a la lista
-        this.students = student;
+    public void setStudents(Student student) {
+        this.students.add(student);
     }
 
     public double getSchoolRevenue() {
@@ -68,25 +62,33 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setSchoolRevenue(double schoolRevenue) {
-        //no puede ser negativo
-        this.schoolRevenue = schoolRevenue;
+        if (schoolRevenue<0){
+            throw new IllegalArgumentException("Revenue cannot be negative");
+        } else {
+            this.schoolRevenue += schoolRevenue;
+        }
     }
 
     public double getExpenses() {
+        setExpenses();
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
-        //no puede ser negativo
-        this.expenses = expenses;
+    public void setExpenses() {
+        double sumSalary=0;
+        for (Teacher t: teachers){
+            sumSalary+=t.getSalary();
+        }
+        this.expenses=sumSalary;
     }
 
     public double getProfits() {
+        setProfits();
         return profits;
     }
 
-    public void setProfits(double profits) {
-        this.profits = profits;
+    private void setProfits() {
+        this.profits= this.schoolRevenue-this.expenses;
     }
 
     @Override
