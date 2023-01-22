@@ -15,12 +15,12 @@ public class PersonTest {
 
     @BeforeEach
     public void setUp(){
-        Person p1 = new Student("Name ", "emailtest", "addresstest");
-        Person p2 = new Student(" Name ", "emailtest", "addresstest");
-        Person p3 = new Student("name surname", "emailtest", "addresstest");
-        Person p4 = new Student("NAME SURNAME", "emailtest", "addresstest");
-        Person p5 = new Student("name s", "emailtest", "addresstest");
-        Person p6 = new Student("n SURNAME", "emailtest", "addresstest");
+        Person p1 = new Student("Name ", "email@test.test ", "addresstest");
+        Person p2 = new Student(" Name ", " email@test.test ", "addresstest");
+        Person p3 = new Student("name surname", "email@TEST.test", "addresstest");
+        Person p4 = new Student("NAME SURNAME", "EMAIL@test.Test", "addresstest");
+        Person p5 = new Student("name s", "email@te st.test", "addresstest");
+        Person p6 = new Student("n SURNAME", "email @test.test", "addresstest");
         testcases.add(p1);
         testcases.add(p2);
         testcases.add(p3);
@@ -48,6 +48,25 @@ public class PersonTest {
     public void setPersonalName_throwsException_withEmptyOrBlankParam() {
         assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setPersonalName(""));
         assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setPersonalName(" "));
+    }
+    @Test
+    @DisplayName("setEmail() removes whitespace and set param to lowercase")
+    public void setEmail_removesTrailingWhitespace_andSetsToLowercase(){
+        String expectedA = "email@test.test";
+        assertEquals(expectedA, testcases.get(0).getEmail());
+        assertEquals(expectedA, testcases.get(1).getEmail());
+        assertEquals(expectedA, testcases.get(2).getEmail());
+        assertEquals(expectedA, testcases.get(3).getEmail());
+        assertEquals(expectedA, testcases.get(4).getEmail());
+        assertEquals(expectedA, testcases.get(5).getEmail());
+    }
+    @Test
+    @DisplayName("setEmail() throws IllegalArgumentException when receiving blank/empty params or param does not contain '@'")
+    public void setEmail_throwsException_withEmptyOrBlankParam_orParamWithoutAtSign(){
+        assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail(""));
+        assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail(" "));
+        assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail("testattest"));
+        assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail("testattest.com"));
     }
 
 }

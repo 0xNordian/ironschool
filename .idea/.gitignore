@@ -16,6 +16,7 @@
 *.ipr
 log/
 /target/*
+/target/
 #Project-format
 *.iws
 #IntelliJ

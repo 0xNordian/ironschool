@@ -41,19 +41,21 @@ public abstract class Person {
         return email;
     }
 
-    public void setEmail(String email) {
-        //String !empty !blank
-        //standard format: Trim whitespace & lower case
-        this.email = email;
+    public void setEmail(String email) throws IllegalArgumentException {
+        if(email.isBlank() || !email.contains("@")){
+            throw new IllegalArgumentException("Illegal Argument: Provide a valid Email. 'Email' cannot be empty nor blank and it must contain '@'.");
+        }
+        this.email = email.trim().replace(" ", "").toLowerCase();
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        //String !empty !blank
-        //standard format: Trim whitespace
-        this.address = address;
+    public void setAddress(String address) throws IllegalArgumentException{
+        if(address.isBlank()){
+            throw new IllegalArgumentException("Illegal Argument: 'Address' cannot be empty nor contain only whitespaces.");
+        }
+        this.address = address.trim();
     }
 }
