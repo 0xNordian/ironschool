@@ -33,7 +33,6 @@ public class School {
        this.schoolName=newSchoolName;
     }
 
-
     public List<Teacher> getTeachers() {
         return teachers;
     }
@@ -90,5 +89,17 @@ public class School {
 
     private void setProfits() {
         this.profits= this.schoolRevenue-this.expenses;
+    }
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "teachers=" + teachers +
+                ", courses=" + courses +
+                ", students=" + students +
+                ", schoolRevenue=" + schoolRevenue +
+                ", expenses=" + expenses +
+                ", profits=" + profits +
+                '}';
     }
 }
