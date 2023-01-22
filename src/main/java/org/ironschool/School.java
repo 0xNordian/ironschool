@@ -4,7 +4,7 @@ import java.util.List;
 
 public class School {
     private static String schoolName;
-    private List<Teacher> teachers;
+    private static List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
     private double schoolRevenue;
@@ -35,7 +35,7 @@ inicializar las List<> en el constructor como ArrayList
         this.schoolName = schoolName;
     }
 
-    public List<Teacher> getTeachers() {
+    public static List<Teacher> getTeachers() {
         return teachers;
     }
 
@@ -48,8 +48,9 @@ inicializar las List<> en el constructor como ArrayList
         return courses;
     }
 
-    public void setCourses(Course course) {
+    public void setCourses(List<Course> courses) {
         //añadir curso a la lista
+        this.courses = courses;
     }
 
     public List<Student> getStudents() {

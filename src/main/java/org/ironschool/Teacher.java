@@ -56,4 +56,7 @@ inicializar las List<> en el constructor como ArrayList
                 '}';
     }
 
+    public String getName() {
+        return super.getPersonalName();
+    }
 }

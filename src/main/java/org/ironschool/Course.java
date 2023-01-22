@@ -76,4 +76,16 @@ inicializar las List<> en el constructor como ArrayList
         //CourseRevenue +=
         this.courseRevenue = courseRevenue;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId='" + courseId + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", teacher=" + teacher +
+                ", students=" + students +
+                ", price=" + price +
+                ", courseRevenue=" + courseRevenue +
+                '}';
+    }
 }

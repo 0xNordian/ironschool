@@ -30,27 +30,38 @@ import java.util.ArrayList;
                 String teacherAddress = sc.nextLine();
                 System.out.println("Please enter the teacher's salary " + (i + 1) + ": ");
                 double salary = sc.nextDouble();
+                sc.nextLine();
                 teacher = new Teacher(teacherName, teacherEmail, teacherAddress, salary);
                 teachers.add(teacher);
             }
             school.setTeachers(teachers);
-            System.out.println("Teacher: " + school.getTeachers());
+            //System.out.println("Teacher: " + school.getTeachers());
+            teachers = school.getTeachers();
+            for (Teacher teacherDetails : teachers) {
+                System.out.println("Teacher name: " + teacherDetails.getName());
+                System.out.println("Teacher email: " + teacherDetails.getEmail());
+                System.out.println("Teacher address: " + teacherDetails.getAddress());
+                System.out.println("Teacher salary: " + teacherDetails.getSalary());
+            }
 
-            /*
+
             // Create courses
             System.out.println("Please enter the number of courses to be created: ");
-            int numberOfCourses = getValidIntInput();
+            int numberOfCourses = sc.nextInt();
+            sc.nextLine();
             List<Course> courses = new ArrayList<>();
             for (int i = 0; i < numberOfCourses; i++) {
                 System.out.println("Please enter the name of course " + (i + 1) + ": ");
-                String name = getValidStringInput();
-                System.out.println("Please enter the description of course " + (i + 1) + ": ");
-                String description = getValidStringInput();
-                Course course = new Course(name, description);
+                String name = sc.nextLine();
+                System.out.println("Please enter the course price " + (i + 1) + ": ");
+                double price = sc.nextDouble();
+                Course course = new Course(name, price);
                 courses.add(course);
             }
             school.setCourses(courses);
+            System.out.println("Course: " + school.getCourses());
 
+            /*
             // Create students
             System.out.println("Please enter the number of students to be created: ");
             int numberOfStudents = getValidIntInput();
