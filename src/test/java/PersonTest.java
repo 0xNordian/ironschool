@@ -15,9 +15,9 @@ public class PersonTest {
 
     @BeforeEach
     public void setUp(){
-        Person p1 = new Student("Name ", "email@test.test ", "addresstest");
-        Person p2 = new Student(" Name ", " email@test.test ", "addresstest");
-        Person p3 = new Student("name surname", "email@TEST.test", "addresstest");
+        Person p1 = new Student("Name ", "email@test.test ", " addresstest");
+        Person p2 = new Student(" Name ", " email@test.test ", "addresstest ");
+        Person p3 = new Student("name surname", "email@TEST.test", "address test");
         Person p4 = new Student("NAME SURNAME", "EMAIL@test.Test", "addresstest");
         Person p5 = new Student("name s", "email@te st.test", "addresstest");
         Person p6 = new Student("n SURNAME", "email @test.test", "addresstest");
@@ -50,7 +50,7 @@ public class PersonTest {
         assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setPersonalName(" "));
     }
     @Test
-    @DisplayName("setEmail() removes whitespace and set param to lowercase")
+    @DisplayName("setEmail() removes trailing whitespace and sets param to lowercase")
     public void setEmail_removesTrailingWhitespace_andSetsToLowercase(){
         String expectedA = "email@test.test";
         assertEquals(expectedA, testcases.get(0).getEmail());
@@ -61,12 +61,23 @@ public class PersonTest {
         assertEquals(expectedA, testcases.get(5).getEmail());
     }
     @Test
-    @DisplayName("setEmail() throws IllegalArgumentException when receiving blank/empty params or param does not contain '@'")
+    @DisplayName("setEmail() throws IllegalArgumentException when receiving blank/empty params or when param does not contain '@'")
     public void setEmail_throwsException_withEmptyOrBlankParam_orParamWithoutAtSign(){
         assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail(""));
         assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail(" "));
         assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail("testattest"));
         assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setEmail("testattest.com"));
+    }
+    @Test
+    @DisplayName("setAddress() removes trailing whitespace of param")
+    public void setAddress_removesTrailingWhitespace_andThrowsExceptionWhenBlankOrEmpty(){
+        String expectedA = "addresstest";
+        String expectedB = "address test";
+        assertEquals(expectedA, testcases.get(0).getAddress());
+        assertEquals(expectedA, testcases.get(1).getAddress());
+        assertEquals(expectedB, testcases.get(2).getAddress());
+        assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setAddress(""));
+        assertThrows(IllegalArgumentException.class, ()->testcases.get(0).setAddress(" "));
     }
 
 }
