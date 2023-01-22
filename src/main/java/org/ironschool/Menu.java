@@ -4,7 +4,9 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
-    public class Menu {
+
+
+public class Menu {
         private static Scanner sc = new Scanner(System.in);
 
         public static void menuStart() {
@@ -94,5 +96,9 @@ import java.util.ArrayList;
                 System.out.println("Student " + (index + 1) + " address: " + studentDetail.getAddress());
                 index++;
             }
+            System.out.println("Please enter the name or email of the teacher you want to search: ");
+            String searchQuery = sc.nextLine();
+            //sc.nextLine();
+            School.searchTeacher(searchQuery);
         }
-    }
+}

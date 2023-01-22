@@ -4,7 +4,7 @@ import java.util.List;
 
 public class School {
     private static String schoolName;
-    private static List<Teacher> teachers;
+    static List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
     private double schoolRevenue;
@@ -88,6 +88,26 @@ inicializar las List<> en el constructor como ArrayList
     public void setProfits(double profits) {
         this.profits = profits;
     }
+
+    public static void searchTeacher(String nameOrEmail) {
+        boolean found = false;
+        List<Teacher> teachers = School.getTeachers();
+        for (Teacher teacher : teachers) {
+            if (teacher.getName().equalsIgnoreCase(nameOrEmail) || teacher.getEmail().equalsIgnoreCase(nameOrEmail)) {
+                System.out.println("Teacher found:");
+                System.out.println("Name: " + teacher.getName());
+                System.out.println("Email: " + teacher.getEmail());
+                System.out.println("Address: " + teacher.getAddress());
+                System.out.println("Salary: " + teacher.getSalary());
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Teacher not found");
+        }
+    }
+
 
     @Override
     public String toString() {
