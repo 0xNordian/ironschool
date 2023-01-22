@@ -54,7 +54,7 @@ public class School {
     }
 
     public void setStudents(Student student) {
-        this.students.add(student);
+        //añadir student a la lista
     }
 
     public double getSchoolRevenue() {
@@ -62,44 +62,24 @@ public class School {
     }
 
     public void setSchoolRevenue(double schoolRevenue) {
-        if (schoolRevenue<0){
-            throw new IllegalArgumentException("Revenue cannot be negative");
-        } else {
-            this.schoolRevenue += schoolRevenue;
-        }
+        //no puede ser negativo
+        this.schoolRevenue = schoolRevenue;
     }
 
     public double getExpenses() {
-        setExpenses();
         return expenses;
     }
 
-    public void setExpenses() {
-        double sumSalary=0;
-        for (Teacher t: teachers){
-            sumSalary+=t.getSalary();
-        }
-        this.expenses=sumSalary;
+    public void setExpenses(double expenses) {
+        //no puede ser negativo
+        this.expenses = expenses;
     }
 
     public double getProfits() {
-        setProfits();
         return profits;
     }
 
-    private void setProfits() {
-        this.profits= this.schoolRevenue-this.expenses;
-    }
-
-    @Override
-    public String toString() {
-        return "School{" +
-                "teachers=" + teachers +
-                ", courses=" + courses +
-                ", students=" + students +
-                ", schoolRevenue=" + schoolRevenue +
-                ", expenses=" + expenses +
-                ", profits=" + profits +
-                '}';
+    public void setProfits(double profits) {
+        this.profits = profits;
     }
 }
