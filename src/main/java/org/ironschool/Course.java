@@ -1,6 +1,7 @@
 package org.ironschool;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,14 +16,11 @@ public class Course {
     public Course(String courseName, double price) {
         setCourseName(courseName);
         setPrice(price);
-    }
-    /*
-private List<Person> personList;
-public PersonsList(){
-personList = new ArrayList<>();}
-inicializar las List<> en el constructor como ArrayList
- */
+        students = new ArrayList<Student>();
+        this.courseRevenue = 0;
+        setCourseId();
 
+    }
 
     public String getCourseId() {
         return courseId;
@@ -37,10 +35,13 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setCourseName(String courseName) {
-        //Trim whitespace & blank
-        //standard format: Trim whitespace
-        this.courseName = courseName;
-    }
+        if (courseName.isBlank()){
+            throw new IllegalArgumentException("Course's name cannot be empty or blank");
+        }
+       courseName=courseName.trim();
+        courseName=courseName.substring(0,1).toUpperCase() + courseName.substring(1).toLowerCase();
+        this.courseName= courseName;
+        }
 
     public Teacher getTeacher() {
         return teacher;
@@ -54,9 +55,9 @@ inicializar las List<> en el constructor como ArrayList
         return students;
     }
 
-    public void setStudents(Student student) {
-        //añadir student a la lista
-        this.students = students;
+    public void setStudents(Student students) {
+        this.students.add(students);
+        //when enroll call curso per student
     }
 
     public double getPrice() {
@@ -64,6 +65,9 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setPrice(double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
         //no puede ser negativo
         this.price = price;
     }
@@ -72,8 +76,9 @@ inicializar las List<> en el constructor como ArrayList
         return courseRevenue;
     }
 
-    public void setCourseRevenue(double courseRevenue) {
+    public void setCourseRevenue() {
         //CourseRevenue +=
-        this.courseRevenue = courseRevenue;
+        //enroll student, then call setCourseRevenue.
+        this.courseRevenue += price;
     }
 }
