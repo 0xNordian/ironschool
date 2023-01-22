@@ -35,7 +35,6 @@ import java.util.ArrayList;
                 teachers.add(teacher);
             }
             school.setTeachers(teachers);
-            //System.out.println("Teacher: " + school.getTeachers());
             teachers = school.getTeachers();
             int index = 0;
             for (Teacher teacherDetail : teachers) {
@@ -57,45 +56,43 @@ import java.util.ArrayList;
                 String name = sc.nextLine();
                 System.out.println("Please enter the course price " + (i + 1) + ": ");
                 double price = sc.nextDouble();
+                sc.nextLine();
                 Course course = new Course(name, price);
                 courses.add(course);
             }
             school.setCourses(courses);
-            //System.out.println("Course: " + school.getCourses());
             courses = school.getCourses();
-            for (Course courseDetails : courses) {
                 index = 0;
+            for (Course courseDetails : courses) {
                 System.out.println("Course " + (index + 1) + " name: " + courseDetails.getCourseName());
                 System.out.println("Course " + (index + 1) + " price: " + courseDetails.getPrice());
                 index++;
             }
 
-            /*
-            // Create students
+            //STUDENTS
             System.out.println("Please enter the number of students to be created: ");
-            int numberOfStudents = getValidIntInput();
+            int numberOfStudents = sc.nextInt();
+            sc.nextLine();
             List<Student> students = new ArrayList<>();
+            Student student = null;
             for (int i = 0; i < numberOfStudents; i++) {
-                System.out.println("Please enter the name of student " + (i + 1) + ": ");
-                String name = getValidStringInput();
-                System.out.println("Please enter the age of student " + (i + 1) + ": ");
-                int age = getValidIntInput();
-                Student student = new Student(name, age);
+                System.out.println("Please enter the student name " + (i + 1) + ": ");
+                String studentName = sc.nextLine();
+                System.out.println("Please enter the student email " + (i + 1) + ": ");
+                String studentEmail = sc.nextLine();
+                System.out.println("Please enter the student address " + (i + 1) + ": ");
+                String studentAddress = sc.nextLine();
+                student = new Student(studentName, studentEmail, studentAddress);
                 students.add(student);
             }
             school.setStudents(students);
-
-            // Show command options
-            System.out.println("Please enter a command to execute a specified action in the system: ");
-            System.out.println("1. Assign a teacher to a course");
-            System.out.println("2. Assign a student to a course");
-            System.out.println("3. Show all teachers in the school");
-            System.out.println("4. Show all courses in the school");
-            System.out.println("5. Show all students in the school");
-
-             */
+            students = school.getStudents();
+                index = 0;
+            for (Student studentDetail : students) {
+                System.out.println("Student " + (index + 1) + " name: " + studentDetail.getName());
+                System.out.println("Student " + (index + 1) + " email: " + studentDetail.getEmail());
+                System.out.println("Student " + (index + 1) + " address: " + studentDetail.getAddress());
+                index++;
+            }
         }
     }
-
-
-

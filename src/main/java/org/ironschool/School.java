@@ -14,6 +14,7 @@ public class School {
     public School(String schoolName) {
         setSchoolName(schoolName);
         this.teachers = new ArrayList<>();
+        this.students = new ArrayList<>();
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
@@ -57,8 +58,9 @@ inicializar las List<> en el constructor como ArrayList
         return students;
     }
 
-    public void setStudents(Student student) {
+    public void setStudents(List<Student> student) {
         //añadir student a la lista
+        this.students = student;
     }
 
     public double getSchoolRevenue() {
