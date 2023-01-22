@@ -32,4 +32,19 @@ inicializar las List<> en el constructor como ArrayList
         //añadir curso a la lista
         this.courses = courses;
     }
+
+    public String getName() {
+        return super.getPersonalName();
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "isEnrolled=" + isEnrolled +
+                ", courses=" + courses +
+                ", name=" + getPersonalName() +
+                ", email=" + getEmail() +
+                ", address=" + getAddress() +
+                '}';
+    }
 }

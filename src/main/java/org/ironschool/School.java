@@ -1,9 +1,10 @@
 package org.ironschool;
+import java.util.ArrayList;
 import java.util.List;
 
 public class School {
-    private String schoolName;
-    private List<Teacher> teachers;
+    private static String schoolName;
+    private static List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
     private double schoolRevenue;
@@ -12,6 +13,8 @@ public class School {
 
     public School(String schoolName) {
         setSchoolName(schoolName);
+        this.teachers = new ArrayList<>();
+        this.students = new ArrayList<>();
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
@@ -23,7 +26,7 @@ personList = new ArrayList<>();}
 inicializar las List<> en el constructor como ArrayList
  */
 
-    public String getSchoolName() {
+    public static String getSchoolName() {
         return schoolName;
     }
 
@@ -33,28 +36,31 @@ inicializar las List<> en el constructor como ArrayList
         this.schoolName = schoolName;
     }
 
-    public List<Teacher> getTeachers() {
+    public static List<Teacher> getTeachers() {
         return teachers;
     }
 
-    public void setTeachers(Teacher teacher) {
+    public void setTeachers(List<Teacher> teachers) {
         //should be ArrayList & step1/1
+        this.teachers = teachers;
     }
 
     public List<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(Course course) {
+    public void setCourses(List<Course> courses) {
         //añadir curso a la lista
+        this.courses = courses;
     }
 
     public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Student student) {
+    public void setStudents(List<Student> student) {
         //añadir student a la lista
+        this.students = student;
     }
 
     public double getSchoolRevenue() {
@@ -81,5 +87,17 @@ inicializar las List<> en el constructor como ArrayList
 
     public void setProfits(double profits) {
         this.profits = profits;
+    }
+
+    @Override
+    public String toString() {
+        return "School{" +
+                "teachers=" + teachers +
+                ", courses=" + courses +
+                ", students=" + students +
+                ", schoolRevenue=" + schoolRevenue +
+                ", expenses=" + expenses +
+                ", profits=" + profits +
+                '}';
     }
 }
