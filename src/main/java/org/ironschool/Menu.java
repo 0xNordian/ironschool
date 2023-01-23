@@ -11,7 +11,7 @@ import java.util.ArrayList;
             // Create a new school
             System.out.println("Please enter a name for the school: ");
             String schoolName = sc.nextLine();
-            School school = new School(schoolName);
+            School school = new School();
             Admin.createSchoolName(schoolName);
             System.out.println("School Name:" + School.getSchoolName());
 
