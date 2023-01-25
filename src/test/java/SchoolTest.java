@@ -2,33 +2,34 @@ import org.ironschool.School;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class SchoolTest {
-    public School example = new School();
+    private School example = new School("salesians");
 
     @Test
     public void testSetSchoolName() {
-        example.setSchoolName("school name");
-        assertEquals("School name", example.getSchoolName());
+        assertEquals("Salesians", example.getSchoolName());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetSchoolNameWithEmptyString() {
-        example.setSchoolName("");
+        assertThrows(IllegalArgumentException.class,()->new School(""));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetSchoolNameWithBlankString() {
-        example.setSchoolName("   ");
+        assertThrows(IllegalArgumentException.class,()->new School("  "));
     }
     @Test
     public void testSetSchoolRevenue() {
-        example.setSchoolRevenue(10000.0);
-        assertEquals(10000.0, example.getSchoolRevenue(), 0.1);
+        example.setSchoolRevenue(10000);
+        assertEquals(10000, example.getSchoolRevenue(), 0.1);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetSchoolRevenueWithNegativeValue() {
-        example.setSchoolRevenue(-100.0);
+        assertThrows(IllegalArgumentException.class,()-> example.setSchoolRevenue(-2000));
+
     }
 }

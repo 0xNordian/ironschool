@@ -11,7 +11,7 @@ public class School {
     private double expenses;
     private double profits;
 
-    public School() {
+    public School(String schoolName) {
         setSchoolName(schoolName);
         this.schoolRevenue=0.;
         this.expenses=0.;

@@ -11,9 +11,9 @@ import java.util.ArrayList;
             // Create a new school
             System.out.println("Please enter a name for the school: ");
             String schoolName = sc.nextLine();
-            School school = new School();
+         //  School school = new School();
             Admin.createSchoolName(schoolName);
-            System.out.println("School Name:" + School.getSchoolName());
+           // System.out.println("School Name:" + School.getSchoolName());
 
             // Create teachers
             System.out.println("Please enter the number of teachers to be created: ");
@@ -34,8 +34,8 @@ import java.util.ArrayList;
                 teacher = new Teacher(teacherName, teacherEmail, teacherAddress, salary);
                 teachers.add(teacher);
             }
-            school.setTeachers(teachers);
-            teachers = school.getTeachers();
+            // school.setTeachers(teachers);
+            //teachers = school.getTeachers();
             int index = 0;
             for (Teacher teacherDetail : teachers) {
                 System.out.println("Teacher " + (index + 1) + " name: " + teacherDetail.getName());
@@ -60,8 +60,8 @@ import java.util.ArrayList;
                 Course course = new Course(name, price);
                 courses.add(course);
             }
-            school.setCourses(courses);
-            courses = school.getCourses();
+            //school.setCourses(courses);
+            //courses = school.getCourses();
                 index = 0;
             for (Course courseDetails : courses) {
                 System.out.println("Course " + (index + 1) + " name: " + courseDetails.getCourseName());
@@ -85,8 +85,8 @@ import java.util.ArrayList;
                 student = new Student(studentName, studentEmail, studentAddress);
                 students.add(student);
             }
-            school.setStudents(students);
-            students = school.getStudents();
+            //school.setStudents(students);
+            //students = school.getStudents();
                 index = 0;
             for (Student studentDetail : students) {
                 System.out.println("Student " + (index + 1) + " name: " + studentDetail.getName());
