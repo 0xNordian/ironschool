@@ -12,13 +12,6 @@ public class Student extends Person{
         courses = new ArrayList<>();
     }
 
-    /*
-private List<Person> personList;
-public PersonsList(){
-personList = new ArrayList<>();}
-inicializar las List<> en el constructor como ArrayList
- */
-
     public boolean isEnrolled() {
         return isEnrolled;
     }
@@ -32,7 +25,6 @@ inicializar las List<> en el constructor como ArrayList
     }
 
     public void setCourses(Course course) {
-        //añadir curso a la lista
         this.courses.add(course);
     }
 

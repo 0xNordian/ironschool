@@ -1,5 +1,6 @@
 package org.ironschool;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class School {
@@ -7,6 +8,7 @@ public class School {
     private List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
+    private HashMap<String, Student> studentIds = new HashMap<String, Student>();
     private double schoolRevenue;
     private double expenses;
     private double profits;
@@ -54,16 +56,23 @@ public class School {
     }
 
     public void setStudents(Student student) {
-        //añadir student a la lista
+        this.students.add(student);
     }
 
     public double getSchoolRevenue() {
         return schoolRevenue;
     }
 
-    public void setSchoolRevenue(double schoolRevenue) {
+    public void setSchoolRevenue() {
         //no puede ser negativo
-        this.schoolRevenue = schoolRevenue;
+        //this.schoolRevenue = schoolRevenue;
+        double sum = 0;
+        for(Course c : this.courses){
+            //int studentsEnrolled = c.getStudents().size();
+            //double revenue = studentsEnrolled * c.getPrice();
+            sum += c.getCourseRevenue();
+        }
+        this.schoolRevenue = sum;
     }
 
     public double getExpenses() {
@@ -73,13 +82,22 @@ public class School {
     public void setExpenses(double expenses) {
         //no puede ser negativo
         this.expenses = expenses;
+        //sumar de los salarios de todos los teachers
     }
 
     public double getProfits() {
         return profits;
     }
 
-    public void setProfits(double profits) {
-        this.profits = profits;
+    public void setProfits() {
+        this.profits = this.schoolRevenue - this.expenses;
     }
+
+    public HashMap<String, Student> getStudentIds(){return this.studentIds;}
+    private void setStudentIds(){
+        for (Student s : this.students) {
+            this.studentIds.put(s.getPersonalId(), s);
+        }
+    }
+
 }
