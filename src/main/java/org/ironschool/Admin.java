@@ -12,9 +12,9 @@ public abstract class Admin {
         course.setStudents(student); //add student to course students (List<Student>)
         course.setCourseRevenue(); //update course revenue by course price
     }
-    //public static void assign(Teacher teacher, Course course){}
+    //public static void assign(Teacher teacher, Course course){} //dani
 
-    //public static void show(School school, String whatToShow){
+    //public static void show(School school, String whatToShow){ //jordi
     // String findAll = whatToShow;
     // switch(findAll){
     //      case Student:
@@ -27,12 +27,12 @@ public abstract class Admin {
     //  }
     // }
 
-    //public static void lookupStudent(id){
+    //public static void lookupStudent(id){ //marino
         // **search and return student with given id}
     //public static void lookupCourse(id){}
     //public static void lookupTeacher(id){}
 
-    //public static showProfit(School school){
+    //public static showProfit(School school){ //estel
     // school.setSchoolRevenue();
     // school.setExpenses();
     // school.setProfit();
