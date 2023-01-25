@@ -28,3 +28,4 @@ out/
 /codeStyles/
 /libraries/
 /target/*
+/jpa-buddy.xml

@@ -1,5 +1,6 @@
 package org.ironschool;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class School {
@@ -7,6 +8,7 @@ public class School {
     private List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
+    private HashMap<String, Student> studentIds = new HashMap<String, Student>();
     private double schoolRevenue;
     private double expenses;
     private double profits;
@@ -61,45 +63,41 @@ public class School {
         return schoolRevenue;
     }
 
-    public void setSchoolRevenue(double schoolRevenue) {
-        if (schoolRevenue<0){
-            throw new IllegalArgumentException("Revenue cannot be negative");
-        } else {
-            this.schoolRevenue += schoolRevenue;
+    public void setSchoolRevenue() {
+        //no puede ser negativo
+        //this.schoolRevenue = schoolRevenue;
+        double sum = 0;
+        for(Course c : this.courses){
+            //int studentsEnrolled = c.getStudents().size();
+            //double revenue = studentsEnrolled * c.getPrice();
+            sum += c.getCourseRevenue();
         }
+        this.schoolRevenue = sum;
     }
 
     public double getExpenses() {
-        setExpenses();
         return expenses;
     }
 
-    public void setExpenses() {
-        double sumSalary=0;
-        for (Teacher t: teachers){
-            sumSalary+=t.getSalary();
-        }
-        this.expenses=sumSalary;
+    public void setExpenses(double expenses) {
+        //no puede ser negativo
+        this.expenses = expenses;
+        //sumar de los salarios de todos los teachers
     }
 
     public double getProfits() {
-        setProfits();
         return profits;
     }
 
-    private void setProfits() {
-        this.profits= this.schoolRevenue-this.expenses;
+    public void setProfits() {
+        this.profits = this.schoolRevenue - this.expenses;
     }
 
-    @Override
-    public String toString() {
-        return "School{" +
-                "teachers=" + teachers +
-                ", courses=" + courses +
-                ", students=" + students +
-                ", schoolRevenue=" + schoolRevenue +
-                ", expenses=" + expenses +
-                ", profits=" + profits +
-                '}';
+    public HashMap<String, Student> getStudentIds(){return this.studentIds;}
+    private void setStudentIds(){
+        for (Student s : this.students) {
+            this.studentIds.put(s.getPersonalId(), s);
+        }
     }
+
 }
