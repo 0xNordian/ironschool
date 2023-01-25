@@ -6,12 +6,7 @@ public abstract class Admin {
     public static void enroll(School school,String idstudent, String idcourse) {
         Student student = school.getStudentIds().get(idstudent);
         Course course = school.getCourseIds().get(idcourse);
-        student.setCourses(course);
-        student.setEnrolled(true);
-        course.setStudents(student);
-        course.setCourseRevenue();
-    }
-    public static void enroll(Student student, Course course){
+
         student.setCourses(course);
         student.setEnrolled(true);
         course.setStudents(student);
