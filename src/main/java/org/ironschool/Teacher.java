@@ -19,7 +19,6 @@ public class Teacher extends Person{
     }
 
     public void setSalary(double salary) {
-        //no puede ser negativo
         if (salary <= 0){
             throw new IllegalArgumentException("Salary cannot be negative or 0 and have to be a number");
         }
@@ -39,7 +38,6 @@ public class Teacher extends Person{
     }
 
     public void setCourses(Course course) {
-        //añadir curso a la lista
         this.courses.add(course);
     }
 

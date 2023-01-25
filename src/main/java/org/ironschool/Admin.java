@@ -14,42 +14,17 @@ public abstract class Admin {
         course.setCourseRevenue();
     }
 
-    public static void assign (String teacher,String course){
+    public static void assign (School school, String teacherId, String courseId){
+        Teacher teacher = school.getTeacherIds().get(teacherId);
+        Course course = school.getCourseIds().get(courseId);
+
         teacher.setCourses(course);
+        teacher.setAssigned(true);
         course.setTeacher(teacher);
-
-    }
-/*
-    public static void assign(String teacherId, String courseId){
-        Teacher teacher = null;
-        Course course = null;
-        for (Teacher t: School.getTeachers()){
-            if (teacherId.equals(t.getPersonalId())){
-                teacher=t;
-            }
-        }
-        for (Course c: School.getCourses()){
-            if (courseId.equals(c.getCourseId())){
-                course=c;
-            }
-        }
-        teacher.setCourses(course);
-        course.setTeacher(teacher);
-
-        for (Teacher t: School.getTeachers()){
-            if (teacherId.equals(t.getPersonalId())){
-                t=teacher;
-            }
-        }
-        for (Course c: School.getCourses()){
-            if (courseId.equals(c.getCourseId())){
-                c=course;
-            }
-        }
-
     }
 
- */
+
+
 
     //public static void show(School school, String whatToShow){
     // String findAll = whatToShow;
