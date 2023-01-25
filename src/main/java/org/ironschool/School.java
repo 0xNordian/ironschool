@@ -8,51 +8,27 @@ public class School {
     private List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
-    private HashMap<String, Student> studentIds = new HashMap<String, Student>();
+    private HashMap<String, Student> studentIds;
+    private HashMap<String, Course> courseIds;
+    private HashMap<String, Teacher> teacherIds;
     private double schoolRevenue;
     private double expenses;
     private double profits;
 
     public School(String schoolName) {
         setSchoolName(schoolName);
-        this.teachers = new ArrayList<>();
-        this.students = new ArrayList<>();
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
         teachers = new ArrayList<>();
         courses = new ArrayList<>();
         students = new ArrayList<>();
+        studentIds = new HashMap<String, Student>();
+        courseIds = new HashMap<String, Course>();
+        teacherIds = new HashMap<String, Teacher>();
     }
     public String getSchoolName() {
         return schoolName;
-    }
-
-    public Student getStudentById(String studentId) {
-        for (Student student : students) {
-            if (student.getPersonalId().equals(studentId)) {
-                return student;
-            }
-        }
-        return null;
-    }
-
-    public Course getCourseById(String courseId) {
-        for (Course course : courses) {
-            if (course.getCourseId().equalsIgnoreCase(courseId)) {
-                return course;
-            }
-        }
-        return null;
-    }
-
-    public Teacher getTeacherById(String teacherId) {
-        for (Teacher teacher : teachers) {
-            if (teacher.getPersonalId().equals(teacherId)) {
-                return teacher;
-            }
-        }
-        return null;
     }
 
     public void setSchoolName(String schoolName) {
@@ -83,7 +59,6 @@ public class School {
     public List<Student> getStudents() {
         return students;
     }
-
     public void setStudents(Student student) {
         this.students.add(student);
     }
@@ -123,10 +98,16 @@ public class School {
     }
 
     public HashMap<String, Student> getStudentIds(){return this.studentIds;}
-    private void setStudentIds() {
-        for (Student s : this.students) {
-            this.studentIds.put(s.getPersonalId(), s);
-        }
+    public void setStudentIds(Student student) {
+            this.studentIds.put(student.getPersonalId(), student);
+    }
+    public HashMap<String, Course> getCourseIds(){return this.courseIds;}
+    public void setCourseIds(Course course) {
+        this.courseIds.put(course.getCourseId(), course);
+    }
+    public HashMap<String, Teacher> getTeacherIds(){return this.teacherIds;}
+    public void setTeacherIds(Teacher teacher) {
+        this.teacherIds.put(teacher.getPersonalId(), teacher);
     }
     public void searchTeacher(String nameOrEmail) {
         boolean found = false;
@@ -145,6 +126,32 @@ public class School {
             System.out.println("Teacher not found");
         }
     }
+//    public Student getStudentById(String studentId) {
+//        for (Student student : students) {
+//            if (student.getPersonalId().equals(studentId)) {
+//                return student;
+//            }
+//        }
+//        return null;
+//    }
+
+//    public Course getCourseById(String courseId) {
+//        for (Course course : courses) {
+//            if (course.getCourseId().equalsIgnoreCase(courseId)) {
+//                return course;
+//            }
+//        }
+//        return null;
+//    }
+
+//    public Teacher getTeacherById(String teacherId) {
+//        for (Teacher teacher : teachers) {
+//            if (teacher.getPersonalId().equals(teacherId)) {
+//                return teacher;
+//            }
+//        }
+//        return null;
+//    }
     @Override
     public String toString() {
         return "School{" +
