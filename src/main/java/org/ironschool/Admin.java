@@ -1,20 +1,19 @@
 package org.ironschool;
 
-
-import java.sql.SQLOutput;
-
 public abstract class Admin {
 
 
+    public static void enroll(School school,String idstudent, String idcourse) {
+        Student student = school.getStudentIds().get(idstudent);
+        Course course = school.getCourseIds().get(idcourse);
 
-
-    public static void enroll(Student student, Course course){
-        student.setCourses(course); //add course to student courses (List<Course>)
-        student.setEnrolled(true); //set isEnrolled to true
-        course.setStudents(student); //add student to course students (List<Student>)
-        course.setCourseRevenue(); //update course revenue by course price
+        student.setCourses(course);
+        student.setEnrolled(true);
+        course.setStudents(student);
+        course.setCourseRevenue();
     }
-    //public static void assign(Teacher teacher, Course course){}
+
+    //public static void assign(Teacher teacher, Course course){ }
 
     public static void show ( School school, LookupType type, String id){
         switch (type) {
@@ -34,35 +33,27 @@ public abstract class Admin {
 
     }
 
-    //public static void lookupStudent(id){
-        // **search and return student with given id}
-    //public static void lookupCourse(id){}
-    //public static void lookupTeacher(id){}
+    public static void lookup(School school, LookupType type, String id) {
+        switch (type) {
+            case COURSE -> {
+                Course resultCourse = school.getCourseIds().get(id);
+                System.out.println(resultCourse.toString());
+            }
+            case STUDENT -> {
+                Student resultStudent = school.getStudentIds().get(id);
+                System.out.println(resultStudent.toString());
+            }
+            case TEACHER -> {
+                Teacher resultTeacher = school.getTeacherIds().get(id);
+                System.out.println(resultTeacher.toString());
+            }
+        }
+    }
+
 
     //public static showProfit(School school){
     // school.setSchoolRevenue();
     // school.setExpenses();
     // school.setProfit();
     // return school.getProfits}
-
-
-
-//    private static String schoolName;
-//
-//    //SCHOOL
-//    public static void createSchoolName(String schoolName) {
-//        if(schoolName.trim().equals("")){
-//            throw new IllegalArgumentException("The School Name cannot remain empty");
-//        }
-//        String[] words = schoolName.trim().split(" ");
-//        StringBuilder modifiedString = new StringBuilder();
-//        for (String word : words) {
-//            modifiedString.append(word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase() + " ");
-//        }
-//        Admin.schoolName = modifiedString.toString().trim();
-//
-//    }
-//    public static String getSchoolName() {
-//        return schoolName;
-//    }
 }
