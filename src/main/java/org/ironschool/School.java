@@ -5,9 +5,9 @@ import java.util.List;
 
 public class School {
     private String schoolName;
-    private List<Teacher> teachers;
-    private List<Course> courses;
-    private List<Student> students;
+    private static List<Teacher> teachers;
+    private static List<Course> courses;
+    private static List<Student> students;
     private HashMap<String, Student> studentIds = new HashMap<String, Student>();
     private double schoolRevenue;
     private double expenses;
@@ -35,7 +35,7 @@ public class School {
        this.schoolName=newSchoolName;
     }
 
-    public List<Teacher> getTeachers() {
+    public static List<Teacher> getTeachers() {
         return teachers;
     }
 
@@ -43,7 +43,7 @@ public class School {
         this.teachers.add(teacher);
     }
 
-    public List<Course> getCourses() {
+    public static List<Course> getCourses() {
         return courses;
     }
 
@@ -63,13 +63,11 @@ public class School {
         return schoolRevenue;
     }
 
-    public void setSchoolRevenue() {
-        //no puede ser negativo
-        //this.schoolRevenue = schoolRevenue;
+    public void setSchoolRevenue(int i) {
+
         double sum = 0;
-        for(Course c : this.courses){
-            //int studentsEnrolled = c.getStudents().size();
-            //double revenue = studentsEnrolled * c.getPrice();
+        for(Course c : courses){
+
             sum += c.getCourseRevenue();
         }
         this.schoolRevenue = sum;

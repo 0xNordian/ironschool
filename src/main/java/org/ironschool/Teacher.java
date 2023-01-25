@@ -7,16 +7,12 @@ public class Teacher extends Person{
     private List<Course> courses;
     private double salary;
 
-
-
-
     public Teacher(String personalName, String email, String address, double salary) {
         super(personalName, email, address);
         setAssigned(false);
         setSalary(salary);
         courses = new ArrayList<>();
     }
-
 
     public double getSalary() {
         return salary;
