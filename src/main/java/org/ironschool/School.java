@@ -5,10 +5,12 @@ import java.util.List;
 
 public class School {
     private String schoolName;
-    private static List<Teacher> teachers;
-    private static List<Course> courses;
-    private static List<Student> students;
-    private HashMap<String, Student> studentIds = new HashMap<String, Student>();
+    private List<Teacher> teachers;
+    private List<Course> courses;
+    private List<Student> students;
+    private HashMap<String, Student> studentIds;
+    private HashMap<String, Course> courseIds;
+    private HashMap<String, Teacher> teacherIds;
     private double schoolRevenue;
     private double expenses;
     private double profits;
@@ -21,6 +23,9 @@ public class School {
         teachers = new ArrayList<>();
         courses = new ArrayList<>();
         students = new ArrayList<>();
+        studentIds = new HashMap<String, Student>();
+        courseIds = new HashMap<String, Course>();
+        teacherIds = new HashMap<String, Teacher>();
     }
     public String getSchoolName() {
         return schoolName;
@@ -63,11 +68,11 @@ public class School {
         return schoolRevenue;
     }
 
-    public void setSchoolRevenue(int i) {
-
+    public void setSchoolRevenue() {
         double sum = 0;
-        for(Course c : courses){
-
+        for(Course c : this.courses){
+            int studentsEnrolled = c.getStudents().size();
+            double revenue = studentsEnrolled * c.getPrice();
             sum += c.getCourseRevenue();
         }
         this.schoolRevenue = sum;
@@ -77,10 +82,16 @@ public class School {
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
-        //no puede ser negativo
-        this.expenses = expenses;
-        //sumar de los salarios de todos los teachers
+    public void setExpenses() {
+        double sum =0;
+        for ( Teacher t : this.teachers) {
+            int teachersAssigned = this.teachers.size();
+          double payment = teachersAssigned * t.getSalary();
+          sum += payment;
+
+        }
+        this.expenses = sum;
+
     }
 
     public double getProfits() {
@@ -88,14 +99,75 @@ public class School {
     }
 
     public void setProfits() {
+        //this.profits= profits i passo parametre double
         this.profits = this.schoolRevenue - this.expenses;
     }
 
     public HashMap<String, Student> getStudentIds(){return this.studentIds;}
-    private void setStudentIds(){
-        for (Student s : this.students) {
-            this.studentIds.put(s.getPersonalId(), s);
+    public void setStudentIds(Student student) {
+            this.studentIds.put(student.getPersonalId(), student);
+    }
+    public HashMap<String, Course> getCourseIds(){return this.courseIds;}
+    public void setCourseIds(Course course) {
+        this.courseIds.put(course.getCourseId(), course);
+    }
+    public HashMap<String, Teacher> getTeacherIds(){return this.teacherIds;}
+    public void setTeacherIds(Teacher teacher) {
+        this.teacherIds.put(teacher.getPersonalId(), teacher);
+    }
+    public void searchTeacher(String nameOrEmail) {
+        boolean found = false;
+        for (Teacher teacher : teachers) {
+            if (teacher.getName().equalsIgnoreCase(nameOrEmail) || teacher.getEmail().equalsIgnoreCase(nameOrEmail)) {
+                System.out.println("Teacher found:");
+                System.out.println("Name: " + teacher.getName());
+                System.out.println("Email: " + teacher.getEmail());
+                System.out.println("Address: " + teacher.getAddress());
+                System.out.println("Salary: " + teacher.getSalary());
+                found = true;
+                break;
+            }
         }
+        if (!found) {
+            System.out.println("Teacher not found");
+        }
+    }
+//    public Student getStudentById(String studentId) {
+//        for (Student student : students) {
+//            if (student.getPersonalId().equals(studentId)) {
+//                return student;
+//            }
+//        }
+//        return null;
+//    }
+
+//    public Course getCourseById(String courseId) {
+//        for (Course course : courses) {
+//            if (course.getCourseId().equalsIgnoreCase(courseId)) {
+//                return course;
+//            }
+//        }
+//        return null;
+//    }
+
+//    public Teacher getTeacherById(String teacherId) {
+//        for (Teacher teacher : teachers) {
+//            if (teacher.getPersonalId().equals(teacherId)) {
+//                return teacher;
+//            }
+//        }
+//        return null;
+//    }
+    @Override
+    public String toString() {
+        return "School{" +
+                "teachers=" + teachers +
+                ", courses=" + courses +
+                ", students=" + students +
+                ", schoolRevenue=" + schoolRevenue +
+                ", expenses=" + expenses +
+                ", profits=" + profits +
+                '}';
     }
 
 }

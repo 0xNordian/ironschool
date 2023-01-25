@@ -68,7 +68,7 @@ public class Course {
         if (price < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
         }
-        //no puede ser negativo
+
         this.price = price;
     }
 

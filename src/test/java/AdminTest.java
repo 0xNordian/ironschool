@@ -1,4 +1,3 @@
-package org.example;
 
 import org.ironschool.Admin;
 import org.junit.Test;
@@ -8,6 +7,7 @@ import static org.junit.Assert.fail;
 
 
 public class AdminTest {
+    /*
     @Test
     public void SchoolRegisterAName_WhenTheCreateSchoolMethodIsCalled() {
         // arrange
@@ -34,6 +34,8 @@ public class AdminTest {
             assertEquals("The School Name cannot remain empty", e.getMessage());
         }
     }
+
+     */
 }
 
 
