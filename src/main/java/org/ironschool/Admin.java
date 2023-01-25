@@ -37,6 +37,7 @@ public abstract class Admin {
     school.setExpenses();
     school.setProfits();
     return school.getProfits();
+    System.out.println(school.getSchoolName() + "profits are: " + school.getProfits() );
     }
 
     public static double showRevenue(School school){
