@@ -14,7 +14,17 @@ public abstract class Admin {
         course.setCourseRevenue();
     }
 
-    //public static void assign(Teacher teacher, Course course){ }
+    public static void assign (School school, String teacherId, String courseId){
+        Teacher teacher = school.getTeacherIds().get(teacherId);
+        Course course = school.getCourseIds().get(courseId);
+
+        teacher.setCourses(course);
+        teacher.setAssigned(true);
+        course.setTeacher(teacher);
+    }
+
+
+
 
     //public static void show(School school, String whatToShow){
     // String findAll = whatToShow;

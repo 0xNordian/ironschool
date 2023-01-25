@@ -40,7 +40,7 @@ public class School {
        this.schoolName=newSchoolName;
     }
 
-    public List<Teacher> getTeachers() {
+    public static List<Teacher> getTeachers() {
         return teachers;
     }
 
@@ -48,7 +48,7 @@ public class School {
         this.teachers.add(teacher);
     }
 
-    public List<Course> getCourses() {
+    public static List<Course> getCourses() {
         return courses;
     }
 
@@ -59,6 +59,7 @@ public class School {
     public List<Student> getStudents() {
         return students;
     }
+
     public void setStudents(Student student) {
         this.students.add(student);
     }
@@ -170,4 +171,3 @@ public class School {
     }
 
 }
-
