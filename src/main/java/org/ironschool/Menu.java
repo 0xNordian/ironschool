@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
     public class Menu {
-       /* private static Scanner sc = new Scanner(System.in);
+       private static Scanner sc = new Scanner(System.in);
 
         public static void menuStart() {
             // Create a new school
@@ -94,5 +94,5 @@ import java.util.ArrayList;
                 System.out.println("Student " + (index + 1) + " address: " + studentDetail.getAddress());
                 index++;
             }
-        }*/
+        }
     }
