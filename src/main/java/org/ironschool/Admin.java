@@ -32,12 +32,22 @@ public abstract class Admin {
     //public static void lookupCourse(id){}
     //public static void lookupTeacher(id){}
 
-    //public static showProfit(School school){
-    // school.setSchoolRevenue();
-    // school.setExpenses();
-    // school.setProfit();
-    // return school.getProfits}
+    public static double showProfit(School school){
+    school.setSchoolRevenue();
+    school.setExpenses();
+    school.setProfits();
+    return school.getProfits();
+    }
 
+    public static double showRevenue(School school){
+        school.setSchoolRevenue();
+        return school.getSchoolRevenue();
+
+    }
+    public static double showExpenses(School school){
+        school.setExpenses();
+        return school.getExpenses();
+    }
 
 
 //    private static String schoolName;
