@@ -15,6 +15,7 @@ public class Course {
     public Course(String courseName, double price) {
         setCourseName(courseName);
         setPrice(price);
+        setCourseId();
     }
     /*
 private List<Person> personList;

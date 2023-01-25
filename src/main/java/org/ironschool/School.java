@@ -5,8 +5,8 @@ import java.util.List;
 public class School {
     private static String schoolName;
     static List<Teacher> teachers;
-    private List<Course> courses;
-    private List<Student> students;
+    private static List<Course> courses;
+    private static List<Student> students;
     private double schoolRevenue;
     private double expenses;
     private double profits;
@@ -30,6 +30,35 @@ inicializar las List<> en el constructor como ArrayList
         return schoolName;
     }
 
+    public static Student getStudentById(String studentId) {
+        for (Student student : students) {
+            if (student.getPersonalId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public static Course getCourseById(String courseId) {
+        List<Course> courses = School.getCourses();
+        for (Course course : courses) {
+            if (course.getCourseId().equalsIgnoreCase(courseId)) {
+                return course;
+            }
+        }
+        return null;
+    }
+
+    public static Teacher getTeacherById(String teacherId) {
+        List<Teacher> teachers = School.getTeachers();
+        for (Teacher teacher : teachers) {
+            if (teacher.getPersonalId().equals(teacherId)) {
+                return teacher;
+            }
+        }
+        return null;
+    }
+
     public void setSchoolName(String schoolName) {
         //String !empty !blank
         //standard format: Trim whitespace & First capital letter
@@ -45,7 +74,7 @@ inicializar las List<> en el constructor como ArrayList
         this.teachers = teachers;
     }
 
-    public List<Course> getCourses() {
+    public static List<Course> getCourses() {
         return courses;
     }
 

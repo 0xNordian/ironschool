@@ -15,7 +15,7 @@ public class Menu {
             String schoolName = sc.nextLine();
             School school = new School(schoolName);
             Admin.createSchoolName(schoolName);
-            System.out.println("School Name:" + School.getSchoolName());
+            System.out.println("School Name:" + school.getSchoolName());
 
             // Create teachers
             System.out.println("Please enter the number of teachers to be created: ");
@@ -68,6 +68,7 @@ public class Menu {
             for (Course courseDetails : courses) {
                 System.out.println("Course " + (index + 1) + " name: " + courseDetails.getCourseName());
                 System.out.println("Course " + (index + 1) + " price: " + courseDetails.getPrice());
+                System.out.println("Course ID: " + courseDetails.getCourseId());
                 index++;
             }
 
@@ -94,11 +95,59 @@ public class Menu {
                 System.out.println("Student " + (index + 1) + " name: " + studentDetail.getName());
                 System.out.println("Student " + (index + 1) + " email: " + studentDetail.getEmail());
                 System.out.println("Student " + (index + 1) + " address: " + studentDetail.getAddress());
-                index++;
+                System.out.println("Student " + (index + 1) + " id: " + studentDetail.getPersonalId());
             }
+
             System.out.println("Please enter the name or email of the teacher you want to search: ");
             String searchQuery = sc.nextLine();
             //sc.nextLine();
             School.searchTeacher(searchQuery);
+
+
+            while (true) {
+                System.out.println("Enter command:");
+                String command = sc.nextLine();
+                String[] parts = command.split(" ");
+                String action = parts[0];
+                switch (action) {
+                    case "ENROLL":
+                        if (parts.length == 3) {
+                            String studentId = parts[1];
+                            String courseId = parts[2];
+                            Student student2 = School.getStudentById(studentId);
+                            Course course = School.getCourseById(courseId);
+                            if (student2 != null && course != null) {
+                                System.out.println("HERE WE CALL THE ENROLL METHOD IN ADMIN");
+                                //student2.Admin.enroll(course);
+                                course.setCourseRevenue(course.getCourseRevenue() + course.getPrice());
+                                System.out.println("Student " + student2.getName() + " has been enrolled in " + course.getCourseName() + ".");
+                            } else {
+                                System.out.println("Invalid student or course ID.");
+                            }
+                        } else {
+                            System.out.println("Invalid command format. Use ENROLL [STUDENT_ID] [COURSE_ID].");
+                        }
+                        break;
+                    case "ASSIGN":
+                        if (parts.length == 3) {
+                            String teacherId = parts[1];
+                            String courseId = parts[2];
+                            Teacher teacher2 = School.getTeacherById(teacherId);
+                            Course course = School.getCourseById(courseId);
+                            if (teacher2 != null && course != null) {
+                                System.out.println("HERE WE CALL THE ASSIGN METHOD IN ADMIN");
+                                //teacher2.assign(course);
+                                System.out.println("Teacher " + teacher2.getName() + " has been assigned to " + course.getCourseName() + ".");
+                            } else {
+                                System.out.println("Invalid teacher or course ID.");
+                            }
+                        } else {
+                            System.out.println("Invalid command format. Use ASSIGN [TEACHER_ID] [COURSE_ID].");
+                        }
+                        break;
+                    // existing code
+                }
+            }
+
         }
 }
