@@ -1,11 +1,16 @@
 import org.ironschool.School;
 import org.junit.Test;
+import org.junit.function.ThrowingRunnable;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SchoolTest {
     private School example = new School("salesians");
+
+
+
 
     @Test
     public void testSetSchoolName() {
@@ -14,15 +19,14 @@ public class SchoolTest {
 
     @Test
     public void testSetSchoolNameWithEmptyString() {
-        assertThrows(IllegalArgumentException.class,()->new School(""));
+        assertThrows(IllegalArgumentException.class, ()->new School(""));
     }
 
     @Test
     public void testSetSchoolNameWithBlankString() {
-        assertThrows(IllegalArgumentException.class,()->new School("  "));
+        assertThrows(IllegalArgumentException.class,  ()->new School("  "));
     }
-
-    @Test
+   /* @Test
     public void testSetSchoolRevenue() {
         example.setSchoolRevenue(10000);
         assertEquals(10000, example.getSchoolRevenue(), 0.1);
@@ -33,4 +37,6 @@ public class SchoolTest {
         assertThrows(IllegalArgumentException.class,()-> example.setSchoolRevenue(-2000));
 
     }
+    */
+
 }

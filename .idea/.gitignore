@@ -27,5 +27,6 @@ out/
 .DS_Store
 /codeStyles/
 /libraries/
+/libraries/*
 /target/*
 /jpa-buddy.xml

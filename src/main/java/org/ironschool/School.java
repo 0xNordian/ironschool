@@ -40,7 +40,7 @@ public class School {
        this.schoolName=newSchoolName;
     }
 
-    public List<Teacher> getTeachers() {
+    public static List<Teacher> getTeachers() {
         return teachers;
     }
 
@@ -48,7 +48,7 @@ public class School {
         this.teachers.add(teacher);
     }
 
-    public List<Course> getCourses() {
+    public static List<Course> getCourses() {
         return courses;
     }
 
@@ -59,6 +59,7 @@ public class School {
     public List<Student> getStudents() {
         return students;
     }
+
     public void setStudents(Student student) {
         this.students.add(student);
     }
@@ -68,12 +69,10 @@ public class School {
     }
 
     public void setSchoolRevenue() {
-        //no puede ser negativo
-        //this.schoolRevenue = schoolRevenue;
         double sum = 0;
         for(Course c : this.courses){
-            //int studentsEnrolled = c.getStudents().size();
-            //double revenue = studentsEnrolled * c.getPrice();
+            int studentsEnrolled = c.getStudents().size();
+            double revenue = studentsEnrolled * c.getPrice();
             sum += c.getCourseRevenue();
         }
         this.schoolRevenue = sum;
@@ -83,10 +82,16 @@ public class School {
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
-        //no puede ser negativo
-        this.expenses = expenses;
-        //sumar de los salarios de todos los teachers
+    public void setExpenses() {
+        double sum =0;
+        for ( Teacher t : this.teachers) {
+            int teachersAssigned = this.teachers.size();
+          double payment = teachersAssigned * t.getSalary();
+          sum += payment;
+
+        }
+        this.expenses = sum;
+
     }
 
     public double getProfits() {
@@ -94,6 +99,7 @@ public class School {
     }
 
     public void setProfits() {
+        //this.profits= profits i passo parametre double
         this.profits = this.schoolRevenue - this.expenses;
     }
 
@@ -165,4 +171,3 @@ public class School {
     }
 
 }
-
