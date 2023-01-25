@@ -35,6 +35,7 @@ public class Menu {
                 sc.nextLine();
                 teacher = new Teacher(teacherName, teacherEmail, teacherAddress, salary);
                 school.setTeachers(teacher);
+                school.setTeacherIds(teacher); // creates hashmap of <TeacherId, Teacher>
                 //teachers.add(teacher);
             }
             //school.setExpenses() <-- calculate
@@ -61,7 +62,9 @@ public class Menu {
                 Course course = new Course(name, price);
                 //courses.add(course);
                 school.setCourses(course);
+                school.setCourseIds(course); // creates hashmap of <CourseId, Course>
             }
+
                 index = 0;
             for (Course courseDetails : school.getCourses()) {
                 System.out.println("Course " + (index + 1) + " name: " + courseDetails.getCourseName());
@@ -85,8 +88,10 @@ public class Menu {
                 String studentAddress = sc.nextLine();
                 student = new Student(studentName, studentEmail, studentAddress);
                 //students.add(student);
-                school.setStudents(student);
+                school.setStudents(student); // creates List<>
+                school.setStudentIds(student); // creates hashmap of <StudentId, Student>
             }
+
                 index = 0;
             for (Student studentDetail : school.getStudents()) {
                 System.out.println("Student " + (index + 1) + " name: " + studentDetail.getName());
@@ -110,10 +115,10 @@ public class Menu {
                         if (parts.length == 3) {
                             String studentId = parts[1];
                             String courseId = parts[2];
-                            Student student2 = school.getStudentById(studentId);
-                            Course course2 = school.getCourseById(courseId);
+                           // Student student2 = school.getStudentById(studentId);
+                           // Course course2 = school.getCourseById(courseId);
                             if (student2 != null && course2 != null) {
-                                Admin.enroll(student2, course2);
+                                Admin.enroll(school, studentId, courseId);
                                 //System.out.println("HERE WE CALL THE ENROLL METHOD IN ADMIN");
                                 //student2.Admin.enroll(course);
                                 System.out.println("Student " + student2.getName() + " has been enrolled in " + course2.getCourseName() + ".");
@@ -128,8 +133,10 @@ public class Menu {
                         if (parts.length == 3) {
                             String teacherId = parts[1];
                             String courseId = parts[2];
-                            Teacher teacher3 = school.getTeacherById(teacherId);
-                            Course course3 = school.getCourseById(courseId);
+                            //Teacher teacher3 = school.getTeacherById(teacherId);
+                            Teacher teacher3 = school.getTeacherIds().get(teacherId); //finds in hashmap, doesn't need a method
+                            //Course course3 = school.getCourseById(courseId);
+                            Course course3 = school.getCourseIds().get(courseId); //finds in hashmap, doesn't need a method
                             if (teacher3 != null && course3 != null) {
                                 System.out.println("HERE WE CALL THE ASSIGN METHOD IN ADMIN");
                                 //teacher2.assign(course);
