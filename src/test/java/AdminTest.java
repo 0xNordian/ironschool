@@ -1,5 +1,5 @@
 package org.example;
-/*
+
 import org.ironschool.Admin;
 import org.junit.Test;
 
@@ -35,5 +35,5 @@ public class AdminTest {
         }
     }
 }
-*/
+
 

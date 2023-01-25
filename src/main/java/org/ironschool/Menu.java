@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
     public class Menu {
-       /*
+
         private static Scanner sc = new Scanner(System.in);
 
 
@@ -97,6 +97,6 @@ import java.util.ArrayList;
                 index++;
             }
         }
-        */
+
 
     }
