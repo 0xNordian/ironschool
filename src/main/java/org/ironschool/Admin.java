@@ -16,7 +16,6 @@ public abstract class Admin {
     }
     //public static void assign(Teacher teacher, Course course){}
 
-  /*
     public static void show ( School school, LookupType type, String id){
         switch (type) {
             case STUDENT -> System.out.println(school.getStudents());
@@ -24,7 +23,7 @@ public abstract class Admin {
             case TEACHER -> System.out.println(school.getTeachers());
         }
     }
-*/
+
     public static void show(School school, String findBy){
      if(findBy.equals("student")||findBy.equals("course")||findBy.equals("teacher")) {
          switch (findBy) {
@@ -32,9 +31,7 @@ public abstract class Admin {
              case "course" -> System.out.println(school.getCourses());
              case "teacher" -> System.out.println(school.getTeachers());
          }
-      }else{
-         throw new IllegalArgumentException("Can't find your query");
-     }
+
     }
 
     //public static void lookupStudent(id){
