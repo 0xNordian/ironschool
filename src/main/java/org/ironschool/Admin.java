@@ -1,48 +1,61 @@
 package org.ironschool;
 
-import java.util.Scanner;
+
+public abstract class Admin {
 
 
-public class Admin {
-    private static String schoolName;
 
-    //SCHOOL
-    public static void createSchoolName(String schoolName) {
-        if(schoolName.trim().equals("")){
-            throw new IllegalArgumentException("The School Name cannot remain empty");
-        }
-        String[] words = schoolName.trim().split(" ");
-        StringBuilder modifiedString = new StringBuilder();
-        for (String word : words) {
-            modifiedString.append(word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase() + " ");
-        }
-        Admin.schoolName = modifiedString.toString().trim();
 
+    public static void enroll(Student student, Course course){
+        student.setCourses(course); //add course to student courses (List<Course>)
+        student.setEnrolled(true); //set isEnrolled to true
+        course.setStudents(student); //add student to course students (List<Student>)
+        course.setCourseRevenue(); //update course revenue by course price
     }
-    public static String getSchoolName() {
-        return schoolName;
-    }
+    //public static void assign(Teacher teacher, Course course){}
 
-    public static void searchTeacher() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the name or email of the teacher you want to search: ");
-        String input = sc.nextLine();
-        boolean found = false;
-        Teacher[] teachers = new Teacher[0];
-        for (Teacher teacher : teachers) {
-            if (teacher.getName().equalsIgnoreCase(input) || teacher.getEmail().equalsIgnoreCase(input)) {
-                System.out.println("Teacher found:");
-                System.out.println("Name: " + teacher.getName());
-                System.out.println("Email: " + teacher.getEmail());
-                System.out.println("Address: " + teacher.getAddress());
-                System.out.println("Salary: " + teacher.getSalary());
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            System.out.println("Teacher not found");
-        }
-    }
+    //public static void show(School school, String whatToShow){
+    // String findAll = whatToShow;
+    // switch(findAll){
+    //      case Student:
+    //          sysout() School.getStudents()
+    //      case Course:
 
+    //      case Teacher:
+    //schoolbaba.getStudents()
+
+    //  }
+    // }
+
+    //public static void lookupStudent(id){
+        // **search and return student with given id}
+    //public static void lookupCourse(id){}
+    //public static void lookupTeacher(id){}
+
+    //public static showProfit(School school){
+    // school.setSchoolRevenue();
+    // school.setExpenses();
+    // school.setProfit();
+    // return school.getProfits}
+
+
+
+//    private static String schoolName;
+//
+//    //SCHOOL
+//    public static void createSchoolName(String schoolName) {
+//        if(schoolName.trim().equals("")){
+//            throw new IllegalArgumentException("The School Name cannot remain empty");
+//        }
+//        String[] words = schoolName.trim().split(" ");
+//        StringBuilder modifiedString = new StringBuilder();
+//        for (String word : words) {
+//            modifiedString.append(word.substring(0,1).toUpperCase() + word.substring(1).toLowerCase() + " ");
+//        }
+//        Admin.schoolName = modifiedString.toString().trim();
+//
+//    }
+//    public static String getSchoolName() {
+//        return schoolName;
+//    }
 }

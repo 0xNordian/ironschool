@@ -13,7 +13,7 @@ public class Menu {
             // Create a new school
             System.out.println("Please enter a name for the school: ");
             String schoolName = sc.nextLine();
-            School school = new School(schoolName);
+            School school = new School(schoolName); //school
             Admin.createSchoolName(schoolName);
             System.out.println("School Name:" + school.getSchoolName());
 
@@ -34,8 +34,10 @@ public class Menu {
                 double salary = sc.nextDouble();
                 sc.nextLine();
                 teacher = new Teacher(teacherName, teacherEmail, teacherAddress, salary);
+                //school.setTeachers(teacher)
                 teachers.add(teacher);
             }
+            //school.setExpenses() <-- calculate
             school.setTeachers(teachers);
             teachers = school.getTeachers();
             int index = 0;
