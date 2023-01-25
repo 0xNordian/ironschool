@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
     public class Menu {
-        private static Scanner sc = new Scanner(System.in);
+       /* private static Scanner sc = new Scanner(System.in);
 
         public static void menuStart() {
             // Create a new school
@@ -13,7 +13,7 @@ import java.util.ArrayList;
             String schoolName = sc.nextLine();
             School school = new School(schoolName);
             Admin.createSchoolName(schoolName);
-            System.out.println("School Name:" + School.getSchoolName());
+           // System.out.println("School Name:" + School.getSchoolName());
 
             // Create teachers
             System.out.println("Please enter the number of teachers to be created: ");
@@ -94,5 +94,5 @@ import java.util.ArrayList;
                 System.out.println("Student " + (index + 1) + " address: " + studentDetail.getAddress());
                 index++;
             }
-        }
+        }*/
     }
