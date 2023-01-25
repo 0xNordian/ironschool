@@ -3,7 +3,7 @@
 
 IronSchool is a School Management System that helps manage students, teachers and courses with some basic functionalities.
 
-Check our ([Application Guide]#Application-Guide)
+Check our [Application Guide](#Application-Guide)
 
 
 
@@ -52,11 +52,10 @@ Install dependencies
 
 
 
-## Appplication Guide
+## Application Guide
 Ironschool is an application that helps schools to manage their service by organizing, students,employees and courses available in the school. Likewise, it also helps to enroll students to the courses, (through their id), assign the corresponding teachers to each course,...
 How it works:
 Schools create an account and add the basic account information.
 Then there are three options to add more data:
 - Add course data
 
-Translated with www.DeepL.com/Translator (free version)
