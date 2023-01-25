@@ -15,25 +15,15 @@ public abstract class Admin {
 
     //public static void assign(Teacher teacher, Course course){ }
 
-    public static void show ( School school, LookupType type, String id){
+    public static void show ( School school, LookupType type) {
         switch (type) {
-            case STUDENT -> System.out.println(school.getStudents());
-            case COURSE -> System.out.println(school.getCourses());
-            case TEACHER -> System.out.println(school.getTeachers());
+            case STUDENT -> System.out.println(school.getStudentIds().values());
+            case COURSE -> System.out.println(school.getCourseIds().values());
+            case TEACHER -> System.out.println(school.getTeacherIds().values());
         }
     }
 
-    public static void show(School school, String findBy){
-     if(findBy.equals("student")||findBy.equals("course")||findBy.equals("teacher")) {
-         switch (findBy) {
-             case "student" -> System.out.println(school.getStudents());
-             case "course" -> System.out.println(school.getCourses());
-             case "teacher" -> System.out.println(school.getTeachers());
-         }
-
-    }
-
-    public static void lookup(School school, LookupType type, String id) {
+    public static void lookup(School school, LookupType type, String id){
         switch (type) {
             case COURSE -> {
                 Course resultCourse = school.getCourseIds().get(id);

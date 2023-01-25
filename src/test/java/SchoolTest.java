@@ -21,6 +21,7 @@ public class SchoolTest {
     public void testSetSchoolNameWithBlankString() {
         assertThrows(IllegalArgumentException.class,()->new School("  "));
     }
+
     @Test
     public void testSetSchoolRevenue() {
         example.setSchoolRevenue(10000);
