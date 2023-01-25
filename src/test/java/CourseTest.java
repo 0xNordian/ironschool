@@ -11,8 +11,8 @@ public class CourseTest {
     //test if name course is valid
     @Test
     public void testCourseName_validName() {
-        Course course = new Course("  mana",2000);
-        String validName = "Mana";
+        Course course = new Course("  gem",2000);
+        String validName = "Gem";
 
         // Assert that the course name was set correctly
         assertEquals(validName, course.getCourseName());
@@ -24,29 +24,34 @@ public class CourseTest {
     public void testCourseName_whiteSpaceName() {
 
 
-        assertThrows(IllegalArgumentException.class, ()-> new Course("",2000));
+        assertThrows(IllegalArgumentException.class, ()-> new Course("  ",2000));
     }
-     /*
+
     //test when it's full of white spaces, IllegalArgumentException thrown
-    @Test(expected = IllegalArgumentException.class)
-    public <Course> void testCourseName_blankName() {
-        Course course = new Course();
-        String blankName = "    ";
-        course.setCourseName(blankName);
+    @Test
+    @DisplayName("expected = IllegalArgumentException.class")
+    public void testCourseName_blankName() {
+        assertThrows(IllegalArgumentException.class, ()-> new Course("",4000));
     }
+
+
+//test if Course Price is -, thrwos an IllegalsrgumentException
+    @Test
+    public void SetPrice_isNegative() {
+        assertThrows(IllegalArgumentException.class, ()-> new Course("Gem", -2000));
+       // double validPrice =  4000;
+        //assertEquals(10, course.getPrice(), 0);
+
+    }
+
 //test if the price is ok
     @Test
-    public void SetPrice_ok() {
-        Course course = new Course();
-        course.setPrice(10);
-        assertEquals(10, course.getPrice(), 0);
+    public void SetPrice_isOk() {
+        Course course = new Course("Gem",2000);
+        double validPrice = 2000;
+
+        // Assert that the course name was set correctly
+        assertEquals(validPrice, course.getPrice());
     }
-//test if Course Price is -, thrwos an IllegalsrgumentException
-    @Test(expected = IllegalArgumentException.class)
-    public void SetPrice_Negative() {
-        Course course = new Course();
-        course.setPrice(-10);
-        fail("Expected IllegalArgumentException to be thrown");
-    }
-    */
+
 }

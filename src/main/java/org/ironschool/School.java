@@ -68,12 +68,10 @@ public class School {
     }
 
     public void setSchoolRevenue() {
-        //no puede ser negativo
-        //this.schoolRevenue = schoolRevenue;
         double sum = 0;
         for(Course c : this.courses){
-            //int studentsEnrolled = c.getStudents().size();
-            //double revenue = studentsEnrolled * c.getPrice();
+            int studentsEnrolled = c.getStudents().size();
+            double revenue = studentsEnrolled * c.getPrice();
             sum += c.getCourseRevenue();
         }
         this.schoolRevenue = sum;
@@ -83,10 +81,16 @@ public class School {
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
-        //no puede ser negativo
-        this.expenses = expenses;
-        //sumar de los salarios de todos los teachers
+    public void setExpenses() {
+        double sum =0;
+        for ( Teacher t : this.teachers) {
+            int teachersAssigned = this.teachers.size();
+          double payment = teachersAssigned * t.getSalary();
+          sum += payment;
+
+        }
+        this.expenses = sum;
+
     }
 
     public double getProfits() {
@@ -94,6 +98,7 @@ public class School {
     }
 
     public void setProfits() {
+        //this.profits= profits i passo parametre double
         this.profits = this.schoolRevenue - this.expenses;
     }
 
