@@ -6,12 +6,9 @@ public class Student extends Person{
     private boolean isEnrolled;
     private List<Course> courses;
 
-    private List<Person> personList;
-
     public Student(String personalName, String email, String address) {
         super(personalName, email, address);
         setEnrolled(false);
-        personList = new ArrayList<Person>();
         courses = new ArrayList<>();
     }
 

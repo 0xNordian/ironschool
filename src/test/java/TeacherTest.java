@@ -15,21 +15,17 @@ public class TeacherTest {
             teachers.add(new Teacher("Jordi", "Jordi@example.com", "calle 1", 5000));
             teachers.add(new Teacher("Meri", "Meri@example.com", "calle 2", 6000));
             teachers.add(new Teacher("Maria", "Maria@example.com", "call 3", 7000));
+
         }
 
         @Test
-        public void testSetNegativeSalary() {
+        public void SetNegativeSalary() {
             Teacher teacher = teachers.get(0);
-            try {
+            assertThrows(IllegalArgumentException.class,  () -> {
                 teacher.setSalary(-1000);
-                fail("Expected IllegalArgumentException to be thrown");
-            } catch (IllegalArgumentException e) {
-                assertEquals("Salary cannot be negative or 0 and have to be a number", e.getMessage());
-            }
-        }
-
-        @Test
-        public void testAddCourse() {
+            });
+        }@Test
+        public void AddCourse() {
             Teacher teacher = teachers.get(1);
             Course math = new Course("Math 101", 1000);
             teacher.setCourses(math);
@@ -38,13 +34,13 @@ public class TeacherTest {
         }
 
         @Test
-        public void testGetName() {
+        public void GetName() {
             Teacher teacher = teachers.get(2);
             assertEquals("Maria", teacher.getName());
         }
 
         @Test
-        public void testSetAssigned() {
+        public void SetAssigned() {
             Teacher teacher = teachers.get(0);
             teacher.setAssigned(true);
             assertTrue(teacher.isAssigned());

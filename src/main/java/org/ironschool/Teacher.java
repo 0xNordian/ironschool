@@ -6,7 +6,7 @@ public class Teacher extends Person{
     private boolean isAssigned;
     private List<Course> courses;
     private double salary;
-    private List<Person> personList;
+
 
 
 
@@ -14,24 +14,17 @@ public class Teacher extends Person{
         super(personalName, email, address);
         setAssigned(false);
         setSalary(salary);
-        personList = new ArrayList<Person>();
         courses = new ArrayList<>();
     }
 
-    /*
-private List<Person> personList;
-public PersonsList(){
-personList = new ArrayList<>();}
-inicializar las List<> en el constructor como ArrayList
- */
 
     public double getSalary() {
         return salary;
     }
 
     public void setSalary(double salary) {
-        //no puede ser negativo ni vacío
-        if (salary <= 0 || salary != salary) {
+        //no puede ser negativo
+        if (salary <= 0){
             throw new IllegalArgumentException("Salary cannot be negative or 0 and have to be a number");
         }
         this.salary = salary;
