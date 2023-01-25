@@ -19,9 +19,7 @@ public class Course {
         students = new ArrayList<Student>();
         this.courseRevenue = 0;
         setCourseId();
-
     }
-
     public String getCourseId() {
         return courseId;
     }

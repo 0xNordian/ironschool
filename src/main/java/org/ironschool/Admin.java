@@ -26,20 +26,15 @@ public abstract class Admin {
 
 
 
-    //public static void show(School school, String whatToShow){
-    // String findAll = whatToShow;
-    // switch(findAll){
-    //      case Student:
-    //          sysout() School.getStudents()
-    //      case Course:
+    public static void show ( School school, LookupType type) {
+        switch (type) {
+            case STUDENT -> System.out.println(school.getStudentIds().values());
+            case COURSE -> System.out.println(school.getCourseIds().values());
+            case TEACHER -> System.out.println(school.getTeacherIds().values());
+        }
+    }
 
-    //      case Teacher:
-    //schoolbaba.getStudents()
-
-    //  }
-    // }
-
-    public static void lookup(School school, LookupType type, String id) {
+    public static void lookup(School school, LookupType type, String id){
         switch (type) {
             case COURSE -> {
                 Course resultCourse = school.getCourseIds().get(id);
