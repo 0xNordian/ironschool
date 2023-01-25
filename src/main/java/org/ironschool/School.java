@@ -15,6 +15,8 @@ public class School {
 
     public School(String schoolName) {
         setSchoolName(schoolName);
+        this.teachers = new ArrayList<>();
+        this.students = new ArrayList<>();
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
@@ -24,6 +26,33 @@ public class School {
     }
     public String getSchoolName() {
         return schoolName;
+    }
+
+    public Student getStudentById(String studentId) {
+        for (Student student : students) {
+            if (student.getPersonalId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public Course getCourseById(String courseId) {
+        for (Course course : courses) {
+            if (course.getCourseId().equalsIgnoreCase(courseId)) {
+                return course;
+            }
+        }
+        return null;
+    }
+
+    public Teacher getTeacherById(String teacherId) {
+        for (Teacher teacher : teachers) {
+            if (teacher.getPersonalId().equals(teacherId)) {
+                return teacher;
+            }
+        }
+        return null;
     }
 
     public void setSchoolName(String schoolName) {
@@ -94,10 +123,39 @@ public class School {
     }
 
     public HashMap<String, Student> getStudentIds(){return this.studentIds;}
-    private void setStudentIds(){
+    private void setStudentIds() {
         for (Student s : this.students) {
             this.studentIds.put(s.getPersonalId(), s);
         }
     }
+    public void searchTeacher(String nameOrEmail) {
+        boolean found = false;
+        for (Teacher teacher : teachers) {
+            if (teacher.getName().equalsIgnoreCase(nameOrEmail) || teacher.getEmail().equalsIgnoreCase(nameOrEmail)) {
+                System.out.println("Teacher found:");
+                System.out.println("Name: " + teacher.getName());
+                System.out.println("Email: " + teacher.getEmail());
+                System.out.println("Address: " + teacher.getAddress());
+                System.out.println("Salary: " + teacher.getSalary());
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            System.out.println("Teacher not found");
+        }
+    }
+    @Override
+    public String toString() {
+        return "School{" +
+                "teachers=" + teachers +
+                ", courses=" + courses +
+                ", students=" + students +
+                ", schoolRevenue=" + schoolRevenue +
+                ", expenses=" + expenses +
+                ", profits=" + profits +
+                '}';
+    }
 
 }
+
