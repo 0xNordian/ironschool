@@ -1,6 +1,8 @@
 package org.ironschool;
 
 
+import java.sql.SQLOutput;
+
 public abstract class Admin {
 
 
@@ -14,18 +16,21 @@ public abstract class Admin {
     }
     //public static void assign(Teacher teacher, Course course){}
 
-    //public static void show(School school, String whatToShow){
-    // String findAll = whatToShow;
-    // switch(findAll){
-    //      case Student:
-    //          sysout() School.getStudents()
-    //      case Course:
 
-    //      case Teacher:
-    //schoolbaba.getStudents()
-
-    //  }
-    // }
+    public static void show(School school, String findBy){
+     if(findBy.equals("student")||findBy.equals("course")||findBy.equals("teacher")) {
+         switch (findBy) {
+             case "student":
+                 System.out.println(school.getStudents());
+             case "course":
+                 System.out.println(school.getCourses());
+             case "teacher":
+                 System.out.println(school.getTeachers());
+         }
+      }else{
+         throw new IllegalArgumentException("Can't find your query");
+     }
+    }
 
     //public static void lookupStudent(id){
         // **search and return student with given id}
