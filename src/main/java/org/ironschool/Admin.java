@@ -47,22 +47,23 @@ public abstract class Admin {
     }
 
 
-    public static double showProfit(School school){
+    public static void showProfit(School school){
     school.setSchoolRevenue();
     school.setExpenses();
     school.setProfits();
-    return school.getProfits();
     System.out.println(school.getSchoolName() + "profits are: " + school.getProfits() );
+
+
     }
 
-    public static double showRevenue(School school){
+    public static void showRevenue(School school){
         school.setSchoolRevenue();
-        return school.getSchoolRevenue();
+        System.out.println(school.getSchoolRevenue());
 
     }
-    public static double showExpenses(School school){
+    public static void showExpenses(School school){
         school.setExpenses();
-        return school.getExpenses();
+        System.out.println(school.getExpenses());
     }
 
 

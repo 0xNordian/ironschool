@@ -68,8 +68,6 @@ public class School {
     }
 
     public void setSchoolRevenue() {
-        //no puede ser negativo
-        //this.schoolRevenue = schoolRevenue;
         double sum = 0;
         for(Course c : this.courses){
             int studentsEnrolled = c.getStudents().size();
@@ -82,7 +80,7 @@ public class School {
     public double getExpenses() {
         return expenses;
     }
-//setExpenses(double expenses)
+
     public void setExpenses() {
         double sum =0;
         for ( Teacher t : this.teachers) {
@@ -92,7 +90,7 @@ public class School {
 
         }
         this.expenses = sum;
-        //sumar de los salarios de todos los teachers
+
     }
 
     public double getProfits() {
