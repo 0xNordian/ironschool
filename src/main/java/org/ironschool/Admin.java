@@ -28,9 +28,27 @@ public abstract class Admin {
 
     public static void show ( School school, LookupType type) {
         switch (type) {
-            case STUDENT -> System.out.println(school.getStudentIds().values());
-            case COURSE -> System.out.println(school.getCourseIds().values());
-            case TEACHER -> System.out.println(school.getTeacherIds().values());
+            //case STUDENT -> System.out.println(school.getStudentIds().values());
+            case STUDENT:
+                for (Student student : school.getStudentIds().values()) {
+                    System.out.println("Student Name: " + student.getPersonalName());
+                    System.out.println("Student Email: " + student.getEmail());
+                    System.out.println("Student Address: " + student.getAddress());
+                }
+                break;
+            case COURSE:
+                for (Course course : school.getCourseIds().values()) {
+                    System.out.println("Course Name: " + course.getCourseName());
+                    System.out.println("Course Price: " + course.getPrice());
+                }
+                break;
+            case TEACHER:
+                for (Teacher teacher : school.getTeacherIds().values()) {
+                    System.out.println("Teacher Name: " + teacher.getPersonalName());
+                    System.out.println("Teacher Email: " + teacher.getEmail());
+                    System.out.println("Teacher Address: " + teacher.getAddress());
+                    System.out.println("Teacher Salary: " + teacher.getSalary());
+                }
         }
     }
 

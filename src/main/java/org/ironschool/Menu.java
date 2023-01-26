@@ -1,10 +1,6 @@
 package org.ironschool;
 
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-
+import java.util.*;
 
 
 public class Menu {
@@ -106,6 +102,7 @@ public class Menu {
             //sc.nextLine();
             school.searchTeacher(searchQuery);
 
+            /*
             while (true) {
                 System.out.println("Enter command:");
                 String command = sc.nextLine();
@@ -150,35 +147,28 @@ public class Menu {
                         }
                         break;
                     case "SHOW":
-                        System.out.println("TEST SHOW COURSES");
-                        List<Course> courses = school.getCourses();
-                        for (int i = 0; i < courses.size(); i++) {
-                            System.out.println("Course " + (i + 1) + ": " + courses.get(i).getCourseName());
+                        System.out.println("1) Course");
+                        System.out.println("2) Student");
+                        System.out.println("3) Teacher");
+                        System.out.print("Enter an option: ");
+                        int showOption = sc.nextInt();
+                        LookupType lookupType;
+                        switch (showOption) {
+                            case 1:
+                                lookupType = LookupType.COURSE;
+                                break;
+                            case 2:
+                                lookupType = LookupType.STUDENT;
+                                break;
+                            case 3:
+                                lookupType = LookupType.TEACHER;
+                                break;
+                            default:
+                                System.out.println("Invalid option.");
+                                continue;
                         }
+                        Admin.show(school, lookupType);
                         break;
-                        /*
-                    case "SHOW-STUDENTS":
-                        System.out.println("This is the start of the SHOW STUDENTS method");
-                        List<Student> students = school.getStudents();
-                        for (Student student4 : students) {
-                            System.out.println("Student Name: " + student4.getName() + " Student ID: " + student4.getPersonalId());
-                        }
-                        break;
-                    case "SHOW-TEACHERS":
-                        System.out.println("This is the start of the SHOW TEACHERS method");
-                        List<Teacher> teachers = school.getTeachers();
-                        for (Teacher teacher4 : teachers) {
-                            System.out.println("Teacher Name: " + teacher4.getName() + " Teacher ID: " + teacher4.getPersonalId());
-                        }
-                        break;
-
-                    case "SHOW-PROFIT":
-                        System.out.println("This is the start of the SHOW PROFIT method");
-                        double profit = school.getProfits();
-                        System.out.println("Profit: " + profit);
-                        break;
-
-                         */
                     case "EXIT":
                         System.out.println("Exiting program...");
                         System.exit(0);
@@ -188,6 +178,85 @@ public class Menu {
                         break;
                 }
             }
+
+             */
+
+            while (true) {
+                System.out.println("Enter command:");
+                System.out.println("1) Enroll");
+                System.out.println("2) Assign");
+                System.out.println("3) Show");
+                System.out.println("4) Exit");
+                System.out.print("Enter an option: ");
+                try {
+                    int command = sc.nextInt();
+                    sc.nextLine();
+                    switch (command) {
+                        case 1:
+                            System.out.print("Enter student ID: ");
+                            String studentId = sc.nextLine();
+                            System.out.print("Enter course ID: ");
+                            String courseId = sc.nextLine();
+                            Student student2 = school.getStudentIds().get(studentId);
+                            Course course2 = school.getCourseIds().get(courseId);
+                            if (student2 != null && course2 != null) {
+                                Admin.enroll(school, studentId, courseId);
+                                System.out.println("Student " + student2.getName() + " has been enrolled in " + course2.getCourseName() + ".");
+                            } else {
+                                System.out.println("Invalid student or course ID.");
+                            }
+                            break;
+                        case 2:
+                            System.out.print("Enter teacher ID: ");
+                            String teacherId = sc.nextLine();
+                            System.out.print("Enter course ID: ");
+                            courseId = sc.nextLine();
+                            Teacher teacher3 = school.getTeacherIds().get(teacherId);
+                            Course course3 = school.getCourseIds().get(courseId);
+                            if (teacher3 != null && course3 != null) {
+                                Admin.assign(school, teacherId, courseId);
+                                System.out.println("Teacher " + teacher3.getName() + " has been assigned to " + course3.getCourseName() + ".");
+                            } else {
+                                System.out.println("Invalid teacher or course ID.");
+                            }
+                            break;
+                        case 3:
+                            System.out.println("1) Course");
+                            System.out.println("2) Student");
+                            System.out.println("3) Teacher");
+                            System.out.print("Enter an option: ");
+                            int showOption = sc.nextInt();
+                            LookupType lookupType;
+                            switch (showOption) {
+                                case 1:
+                                    lookupType = LookupType.COURSE;
+                                    break;
+                                case 2:
+                                    lookupType = LookupType.STUDENT;
+                                    break;
+                                case 3:
+                                    lookupType = LookupType.TEACHER;
+                                    break;
+                                default:
+                                    System.out.println("Invalid option.");
+                                    continue;
+                            }
+                            Admin.show(school, lookupType);
+                            break;
+                        case 4:
+                            System.out.println("Exiting program...");
+                            System.exit(0);
+                            break;
+                        default:
+                            System.out.println("Invalid command, please enter a valid command.");
+                            break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input, please enter a valid number.");
+                    sc.nextLine();
+                }
+            }
+
 
         }
 }
