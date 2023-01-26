@@ -109,9 +109,9 @@ Allows you to see the information stored for any given course, teacher or studen
 It requires selecting whether you want to lookup a `course`, `teacher` or `student` and providing their `id`. 
 
 
-> [Profit]
+> [Finance]
 
-Allows you to check the current school profit.
+Allows you to check the current school revenue, expenses and profit.
 
 `schoolProfit` is calculated substracting expenses (the sum of all teacher salaries) from revenue (the sum of the revenue of each course, calculated as price of course per student enrolled).
 
