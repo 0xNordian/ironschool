@@ -33,7 +33,7 @@ public class School {
 
     public void setSchoolName(String schoolName) {
        if (schoolName.isBlank()){
-           throw new IllegalArgumentException("Scholl name cannot be empty or blank");
+           throw new IllegalArgumentException("School name cannot be empty or blank");
        }
        String newSchoolName= schoolName.trim();
        newSchoolName=newSchoolName.substring(0,1).toUpperCase() + newSchoolName.substring(1).toLowerCase();

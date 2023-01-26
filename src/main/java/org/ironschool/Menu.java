@@ -6,18 +6,33 @@ public class Menu {
         private static Scanner sc = new Scanner(System.in);
 
         public static void menuStart() {
-            // Create a new school
-            System.out.println("Please enter a name for the school: ");
-            String schoolName = sc.nextLine();
-            School school = new School(schoolName); //school
-            //Admin.createSchoolName(schoolName);
+
+            Scanner sc = new Scanner(System.in);
+            School school = null;
+            while (school == null) {
+                System.out.println("Please enter a name for the school: ");
+                String schoolName = sc.nextLine();
+                try {
+                    school = new School(schoolName);
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
             System.out.println("School Name:" + school.getSchoolName());
+
 
             // Create teachers
             System.out.println("Please enter the number of teachers to be created: ");
-            int numberOfTeachers = sc.nextInt();
-            sc.nextLine();
-            //List<Teacher> teachers = new ArrayList<>();
+            int numberOfTeachers = 0;
+            while (numberOfTeachers <= 0) {
+                try {
+                    numberOfTeachers = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e) {
+                    System.out.println("Error: Please enter a valid number");
+                    sc.nextLine();
+                }
+            }
             Teacher teacher = null;
             for (int i = 0; i < numberOfTeachers; i++) {
                 System.out.println("Please enter the teacher's name " + (i + 1) + ": ");
@@ -95,98 +110,20 @@ public class Menu {
                 System.out.println("Student " + (index + 1) + " address: " + studentDetail.getAddress());
                 System.out.println("Student " + (index + 1) + " id: " + studentDetail.getPersonalId());
             }
-
+/*
             System.out.println("Please enter the name or email of the teacher you want to search: ");
             String searchQuery = sc.nextLine();
             //sc.nextLine();
             school.searchTeacher(searchQuery);
-
-            /*
-            while (true) {
-                System.out.println("Enter command:");
-                String command = sc.nextLine();
-                String[] parts = command.split(" ");
-                String action = parts[0];
-                switch (action) {
-                    case "ENROLL":
-                        if (parts.length == 3) {
-                            String studentId = parts[1];
-                            String courseId = parts[2];
-                            Student student2 = school.getStudentIds().get(studentId);
-                            Course course2 = school.getCourseIds().get(courseId);
-                            if (student2 != null && course2 != null) {
-                                Admin.enroll(school, studentId, courseId);
-                                //System.out.println("HERE WE CALL THE ENROLL METHOD IN ADMIN");
-                                //student2.Admin.enroll(course);
-                                System.out.println("Student " + student2.getName() + " has been enrolled in " + course2.getCourseName() + ".");
-                            } else {
-                                System.out.println("Invalid student or course ID.");
-                            }
-                        } else {
-                            System.out.println("Invalid command format. Use ENROLL [STUDENT_ID] [COURSE_ID].");
-                        }
-                        break;
-                    case "ASSIGN":
-                        if (parts.length == 3) {
-                            String teacherId = parts[1];
-                            String courseId = parts[2];
-                            //Teacher teacher3 = school.getTeacherById(teacherId);
-                            Teacher teacher3 = school.getTeacherIds().get(teacherId); //finds in hashmap, doesn't need a method
-                            //Course course3 = school.getCourseById(courseId);
-                            Course course3 = school.getCourseIds().get(courseId); //finds in hashmap, doesn't need a method
-                            if (teacher3 != null && course3 != null) {
-                            Admin.assign(school, teacherId, courseId);
-                                //teacher2.assign(course);
-                                System.out.println("Teacher " + teacher3.getName() + " has been assigned to " + course3.getCourseName() + ".");
-                            } else {
-                                System.out.println("Invalid teacher or course ID.");
-                            }
-                        } else {
-                            System.out.println("Invalid command format. Use ASSIGN [TEACHER_ID] [COURSE_ID].");
-                        }
-                        break;
-                    case "SHOW":
-                        System.out.println("1) Course");
-                        System.out.println("2) Student");
-                        System.out.println("3) Teacher");
-                        System.out.print("Enter an option: ");
-                        int showOption = sc.nextInt();
-                        LookupType lookupType;
-                        switch (showOption) {
-                            case 1:
-                                lookupType = LookupType.COURSE;
-                                break;
-                            case 2:
-                                lookupType = LookupType.STUDENT;
-                                break;
-                            case 3:
-                                lookupType = LookupType.TEACHER;
-                                break;
-                            default:
-                                System.out.println("Invalid option.");
-                                continue;
-                        }
-                        Admin.show(school, lookupType);
-                        break;
-                    case "EXIT":
-                        System.out.println("Exiting program...");
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Invalid command, please enter a valid command.");
-                        break;
-                }
-            }
-
-             */
-
+*/
         while (true) {
             System.out.println("Enter command:");
             System.out.println("1) Enroll");
             System.out.println("2) Assign");
             System.out.println("3) Show");
             System.out.println("4) Lookup");
-            System.out.println("5) Exit");
+            System.out.println("5) Finance");
+            System.out.println("6) Exit");
             System.out.print("Enter an option: ");
             try {
                 int command = sc.nextInt();
@@ -266,7 +203,7 @@ public class Menu {
                                 continue;
                         }
 
-                        System.out.print("Enter the ID of the user you want to lookup: ");
+                        System.out.print("Enter the ID of the record you want to lookup: ");
                         String lookupId = sc.nextLine();
                         try {
                             Admin.lookup(school, lookupType2, lookupId);
@@ -275,11 +212,33 @@ public class Menu {
                         }
                         break;
                     case 5:
+                        System.out.println("1) Profit");
+                        System.out.println("2) Revenue");
+                        System.out.println("3) Expenses");
+                        System.out.print("Enter an option: ");
+                        int financeOption = sc.nextInt();
+                        sc.nextLine();
+                        switch (financeOption) {
+                            case 1:
+                                Admin.showProfit(school);
+                                break;
+                            case 2:
+                                Admin.showRevenue(school);
+                                break;
+                            case 3:
+                                Admin.showExpenses(school);
+                                break;
+                            default:
+                                System.out.println("Invalid option, please enter a valid number between 1 to 3.");
+                                continue;
+                        }
+                        break;
+                    case 6:
                         System.out.println("Exiting program...");
                         System.exit(0);
                         break;
                     default:
-                        System.out.println("Invalid command, please enter a valid command.");
+                        System.out.println("Invalid command, please enter a valid number between 1 to 6.");
                         break;
                 }
             } catch (InputMismatchException e) {

@@ -52,14 +52,14 @@ public abstract class Admin {
         switch (type) {
             case COURSE -> {
                 Course resultCourse = school.getCourseIds().get(id);
-                System.out.println(resultCourse.toString());
+                //System.out.println(resultCourse.toString());
 
                 System.out.println("Course Name: " + resultCourse.getCourseName());
                 System.out.println("Course Price: " + resultCourse.getPrice());
             }
             case STUDENT -> {
                 Student resultStudent = school.getStudentIds().get(id);
-                System.out.println(resultStudent.toString());
+                //System.out.println(resultStudent.toString());
 
                 System.out.println("Student Name: " + resultStudent.getPersonalName());
                 System.out.println("Student Email: " + resultStudent.getEmail());
@@ -67,13 +67,13 @@ public abstract class Admin {
                 System.out.println("Enroll Status: " + resultStudent.isEnrolled());
                 if(resultStudent.isEnrolled() == true){
                     for(int i = 0; i < resultStudent.getCourses().size(); i++){
-                System.out.println(resultStudent.getPersonalName() + "  is enrolled to the course: " + " " + resultStudent.getCourses());
+                System.out.println(resultStudent.getPersonalName() + "  is enrolled to the course: " + " " + resultStudent.getCourses().get(i).getCourseName());
                 }
                 }
             }
             case TEACHER -> {
                 Teacher resultTeacher = school.getTeacherIds().get(id);
-                System.out.println(resultTeacher.toString());
+                //System.out.println(resultTeacher.toString());
 
                 System.out.println("Teacher Name: " + resultTeacher.getPersonalName());
                 System.out.println("Teacher Email: " + resultTeacher.getEmail());
@@ -88,7 +88,7 @@ public abstract class Admin {
     school.setSchoolRevenue();
     school.setExpenses();
     school.setProfits();
-    System.out.println(school.getSchoolName() + "profits are: " + school.getProfits() );
+    System.out.println(school.getSchoolName() + " profits are: " + school.getProfits() );
 
 
     }
