@@ -44,6 +44,7 @@ public class Menu {
                 System.out.println("Teacher " + (index + 1) + " email: " + teacherDetail.getEmail());
                 System.out.println("Teacher " + (index + 1) + " address: " + teacherDetail.getAddress());
                 System.out.println("Teacher " + (index + 1) + " salary: " + teacherDetail.getSalary());
+                System.out.println("Teacher " + (index + 1) + " ID: " + teacherDetail.getPersonalId());
                 index++;
             }
 
@@ -87,7 +88,7 @@ public class Menu {
                 //students.add(student);
                 school.setStudents(student);
             }
-                index = 0;
+                index = 1;
             for (Student studentDetail : school.getStudents()) {
                 System.out.println("Student " + (index + 1) + " name: " + studentDetail.getName());
                 System.out.println("Student " + (index + 1) + " email: " + studentDetail.getEmail());
@@ -141,7 +142,40 @@ public class Menu {
                             System.out.println("Invalid command format. Use ASSIGN [TEACHER_ID] [COURSE_ID].");
                         }
                         break;
-                    // existing code
+                    case "SHOW-COURSES":
+                        System.out.println("TEST SHOW COURSES");
+                        List<Course> courses = school.getCourses();
+                        for (int i = 0; i < courses.size(); i++) {
+                            System.out.println("Course " + (i + 1) + ": " + courses.get(i).getCourseName());
+                        }
+                        break;
+                    case "SHOW-STUDENTS":
+                        System.out.println("This is the start of the SHOW STUDENTS method");
+                        List<Student> students = school.getStudents();
+                        for (Student student4 : students) {
+                            System.out.println("Student Name: " + student4.getName() + " Student ID: " + student4.getPersonalId());
+                        }
+                        break;
+                    case "SHOW-TEACHERS":
+                        System.out.println("This is the start of the SHOW TEACHERS method");
+                        List<Teacher> teachers = school.getTeachers();
+                        for (Teacher teacher4 : teachers) {
+                            System.out.println("Teacher Name: " + teacher4.getName() + " Teacher ID: " + teacher4.getPersonalId());
+                        }
+                        break;
+
+                    case "SHOW-PROFIT":
+                        System.out.println("This is the start of the SHOW PROFIT method");
+                        double profit = school.getProfits();
+                        System.out.println("Profit: " + profit);
+                        break;
+                    case "EXIT":
+                        System.out.println("Exiting program...");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Invalid command, please enter a valid command.");
+                        break;
                 }
             }
 
