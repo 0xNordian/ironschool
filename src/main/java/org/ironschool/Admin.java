@@ -23,12 +23,8 @@ public abstract class Admin {
         course.setTeacher(teacher);
     }
 
-
-
-
     public static void show ( School school, LookupType type) {
         switch (type) {
-            //case STUDENT -> System.out.println(school.getStudentIds().values());
             case STUDENT:
                 for (Student student : school.getStudentIds().values()) {
                     System.out.println("Student Name: " + student.getPersonalName());
@@ -57,14 +53,32 @@ public abstract class Admin {
             case COURSE -> {
                 Course resultCourse = school.getCourseIds().get(id);
                 System.out.println(resultCourse.toString());
+
+                System.out.println("Course Name: " + resultCourse.getCourseName());
+                System.out.println("Course Price: " + resultCourse.getPrice());
             }
             case STUDENT -> {
                 Student resultStudent = school.getStudentIds().get(id);
                 System.out.println(resultStudent.toString());
+
+                System.out.println("Student Name: " + resultStudent.getPersonalName());
+                System.out.println("Student Email: " + resultStudent.getEmail());
+                System.out.println("Student Address: " + resultStudent.getAddress());
+                System.out.println("Enroll Status: " + resultStudent.isEnrolled());
+                if(resultStudent.isEnrolled() == true){
+                    for(int i = 0; i < resultStudent.getCourses().size(); i++){
+                System.out.println(resultStudent.getPersonalName() + "  is enrolled to the course: " + " " + resultStudent.getCourses());
+                }
+                }
             }
             case TEACHER -> {
                 Teacher resultTeacher = school.getTeacherIds().get(id);
                 System.out.println(resultTeacher.toString());
+
+                System.out.println("Teacher Name: " + resultTeacher.getPersonalName());
+                System.out.println("Teacher Email: " + resultTeacher.getEmail());
+                System.out.println("Teacher Address: " + resultTeacher.getAddress());
+                System.out.println("Teacher Salary: " + resultTeacher.getSalary());
             }
         }
     }
