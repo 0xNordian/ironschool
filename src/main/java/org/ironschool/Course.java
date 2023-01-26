@@ -19,9 +19,7 @@ public class Course {
         students = new ArrayList<Student>();
         this.courseRevenue = 0;
         setCourseId();
-
     }
-
     public String getCourseId() {
         return courseId;
     }
@@ -68,7 +66,7 @@ public class Course {
         if (price < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
         }
-        //no puede ser negativo
+
         this.price = price;
     }
 

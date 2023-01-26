@@ -20,7 +20,7 @@ public class Student extends Person{
         isEnrolled = enrolled;
     }
 
-    public List<Course> getCourses() {
+    public static List<Course> getCourses() {
         return courses;
     }
 
