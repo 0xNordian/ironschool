@@ -1,5 +1,6 @@
 package org.ironschool;
 
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class Menu {
                 sc.nextLine();
                 teacher = new Teacher(teacherName, teacherEmail, teacherAddress, salary);
                 school.setTeachers(teacher);
+                school.setTeacherIds(teacher); // creates hashmap of <TeacherId, Teacher>
                 //teachers.add(teacher);
             }
             //school.setExpenses() <-- calculate
@@ -62,7 +64,9 @@ public class Menu {
                 Course course = new Course(name, price);
                 //courses.add(course);
                 school.setCourses(course);
+                school.setCourseIds(course); // creates hashmap of <CourseId, Course>
             }
+
                 index = 0;
             for (Course courseDetails : school.getCourses()) {
                 System.out.println("Course " + (index + 1) + " name: " + courseDetails.getCourseName());
@@ -86,7 +90,8 @@ public class Menu {
                 String studentAddress = sc.nextLine();
                 student = new Student(studentName, studentEmail, studentAddress);
                 //students.add(student);
-                school.setStudents(student);
+                school.setStudents(student); // creates List<>
+                school.setStudentIds(student); // creates hashmap of <StudentId, Student>
             }
                 index = 1;
             for (Student studentDetail : school.getStudents()) {
@@ -111,10 +116,10 @@ public class Menu {
                         if (parts.length == 3) {
                             String studentId = parts[1];
                             String courseId = parts[2];
-                            Student student2 = school.getStudentById(studentId);
-                            Course course2 = school.getCourseById(courseId);
+                            Student student2 = school.getStudentIds().get(studentId);
+                            Course course2 = school.getCourseIds().get(courseId);
                             if (student2 != null && course2 != null) {
-                                Admin.enroll(student2, course2);
+                                Admin.enroll(school, studentId, courseId);
                                 //System.out.println("HERE WE CALL THE ENROLL METHOD IN ADMIN");
                                 //student2.Admin.enroll(course);
                                 System.out.println("Student " + student2.getName() + " has been enrolled in " + course2.getCourseName() + ".");
@@ -129,10 +134,12 @@ public class Menu {
                         if (parts.length == 3) {
                             String teacherId = parts[1];
                             String courseId = parts[2];
-                            Teacher teacher3 = school.getTeacherById(teacherId);
-                            Course course3 = school.getCourseById(courseId);
+                            //Teacher teacher3 = school.getTeacherById(teacherId);
+                            Teacher teacher3 = school.getTeacherIds().get(teacherId); //finds in hashmap, doesn't need a method
+                            //Course course3 = school.getCourseById(courseId);
+                            Course course3 = school.getCourseIds().get(courseId); //finds in hashmap, doesn't need a method
                             if (teacher3 != null && course3 != null) {
-                                System.out.println("HERE WE CALL THE ASSIGN METHOD IN ADMIN");
+                            Admin.assign(school, teacherId, courseId);
                                 //teacher2.assign(course);
                                 System.out.println("Teacher " + teacher3.getName() + " has been assigned to " + course3.getCourseName() + ".");
                             } else {
@@ -142,13 +149,14 @@ public class Menu {
                             System.out.println("Invalid command format. Use ASSIGN [TEACHER_ID] [COURSE_ID].");
                         }
                         break;
-                    case "SHOW-COURSES":
+                    case "SHOW":
                         System.out.println("TEST SHOW COURSES");
                         List<Course> courses = school.getCourses();
                         for (int i = 0; i < courses.size(); i++) {
                             System.out.println("Course " + (i + 1) + ": " + courses.get(i).getCourseName());
                         }
                         break;
+                        /*
                     case "SHOW-STUDENTS":
                         System.out.println("This is the start of the SHOW STUDENTS method");
                         List<Student> students = school.getStudents();
@@ -169,6 +177,8 @@ public class Menu {
                         double profit = school.getProfits();
                         System.out.println("Profit: " + profit);
                         break;
+
+                         */
                     case "EXIT":
                         System.out.println("Exiting program...");
                         System.exit(0);

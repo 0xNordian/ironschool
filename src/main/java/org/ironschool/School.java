@@ -8,51 +8,27 @@ public class School {
     private List<Teacher> teachers;
     private List<Course> courses;
     private List<Student> students;
-    private HashMap<String, Student> studentIds = new HashMap<String, Student>();
+    private HashMap<String, Student> studentIds;
+    private HashMap<String, Course> courseIds;
+    private HashMap<String, Teacher> teacherIds;
     private double schoolRevenue;
     private double expenses;
     private double profits;
 
     public School(String schoolName) {
         setSchoolName(schoolName);
-        this.teachers = new ArrayList<>();
-        this.students = new ArrayList<>();
         this.schoolRevenue=0.;
         this.expenses=0.;
         this.profits=0.;
         teachers = new ArrayList<>();
         courses = new ArrayList<>();
         students = new ArrayList<>();
+        studentIds = new HashMap<String, Student>();
+        courseIds = new HashMap<String, Course>();
+        teacherIds = new HashMap<String, Teacher>();
     }
     public String getSchoolName() {
         return schoolName;
-    }
-
-    public Student getStudentById(String studentId) {
-        for (Student student : students) {
-            if (student.getPersonalId().equals(studentId)) {
-                return student;
-            }
-        }
-        return null;
-    }
-
-    public Course getCourseById(String courseId) {
-        for (Course course : courses) {
-            if (course.getCourseId().equalsIgnoreCase(courseId)) {
-                return course;
-            }
-        }
-        return null;
-    }
-
-    public Teacher getTeacherById(String teacherId) {
-        for (Teacher teacher : teachers) {
-            if (teacher.getPersonalId().equals(teacherId)) {
-                return teacher;
-            }
-        }
-        return null;
     }
 
     public void setSchoolName(String schoolName) {
@@ -93,12 +69,10 @@ public class School {
     }
 
     public void setSchoolRevenue() {
-        //no puede ser negativo
-        //this.schoolRevenue = schoolRevenue;
         double sum = 0;
         for(Course c : this.courses){
-            //int studentsEnrolled = c.getStudents().size();
-            //double revenue = studentsEnrolled * c.getPrice();
+            int studentsEnrolled = c.getStudents().size();
+            double revenue = studentsEnrolled * c.getPrice();
             sum += c.getCourseRevenue();
         }
         this.schoolRevenue = sum;
@@ -108,10 +82,16 @@ public class School {
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
-        //no puede ser negativo
-        this.expenses = expenses;
-        //sumar de los salarios de todos los teachers
+    public void setExpenses() {
+        double sum =0;
+        for ( Teacher t : this.teachers) {
+            int teachersAssigned = this.teachers.size();
+          double payment = teachersAssigned * t.getSalary();
+          sum += payment;
+
+        }
+        this.expenses = sum;
+
     }
 
     public double getProfits() {
@@ -119,14 +99,23 @@ public class School {
     }
 
     public void setProfits() {
+        //this.profits= profits i passo parametre double
         this.profits = this.schoolRevenue - this.expenses;
     }
 
-    public HashMap<String, Student> getStudentIds(){return this.studentIds;}
-    private void setStudentIds() {
-        for (Student s : this.students) {
-            this.studentIds.put(s.getPersonalId(), s);
-        }
+    public HashMap<String, Student> getStudentIds(){
+        return this.studentIds;}
+    public void setStudentIds(Student student) {
+            this.studentIds.put(student.getPersonalId(), student);
+    }
+    public HashMap<String, Course> getCourseIds(){
+        return this.courseIds;}
+    public void setCourseIds(Course course) {
+        this.courseIds.put(course.getCourseId(), course);
+    }
+    public HashMap<String, Teacher> getTeacherIds(){return this.teacherIds;}
+    public void setTeacherIds(Teacher teacher) {
+        this.teacherIds.put(teacher.getPersonalId(), teacher);
     }
     public void searchTeacher(String nameOrEmail) {
         boolean found = false;
@@ -145,6 +134,7 @@ public class School {
             System.out.println("Teacher not found");
         }
     }
+
     @Override
     public String toString() {
         return "School{" +
@@ -158,4 +148,3 @@ public class School {
     }
 
 }
-

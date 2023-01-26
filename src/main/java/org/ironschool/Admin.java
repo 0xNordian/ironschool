@@ -4,40 +4,72 @@ package org.ironschool;
 public abstract class Admin {
 
 
+    public static void enroll(School school,String idstudent, String idcourse) {
+        Student student = school.getStudentIds().get(idstudent);
+        Course course = school.getCourseIds().get(idcourse);
 
-
-    public static void enroll(Student student, Course course){
-        student.setCourses(course); //add course to student courses (List<Course>)
-        student.setEnrolled(true); //set isEnrolled to true
-        course.setStudents(student); //add student to course students (List<Student>)
-        course.setCourseRevenue(); //update course revenue by course price
+        student.setCourses(course);
+        student.setEnrolled(true);
+        course.setStudents(student);
+        course.setCourseRevenue();
     }
-    //public static void assign(Teacher teacher, Course course){}
 
-    //public static void show(School school, String whatToShow){
-    // String findAll = whatToShow;
-    // switch(findAll){
-    //      case Student:
-    //          sysout() School.getStudents()
-    //      case Course:
+    public static void assign (School school, String teacherId, String courseId){
+        Teacher teacher = school.getTeacherIds().get(teacherId);
+        Course course = school.getCourseIds().get(courseId);
 
-    //      case Teacher:
-    //schoolbaba.getStudents()
+        teacher.setCourses(course);
+        teacher.setAssigned(true);
+        course.setTeacher(teacher);
+    }
 
-    //  }
-    // }
 
-    //public static void lookupStudent(id){
-        // **search and return student with given id}
-    //public static void lookupCourse(id){}
-    //public static void lookupTeacher(id){}
 
-    //public static showProfit(School school){
-    // school.setSchoolRevenue();
-    // school.setExpenses();
-    // school.setProfit();
-    // return school.getProfits}
 
+    public static void show ( School school, LookupType type) {
+        switch (type) {
+            case STUDENT -> System.out.println(school.getStudentIds().values());
+            case COURSE -> System.out.println(school.getCourseIds().values());
+            case TEACHER -> System.out.println(school.getTeacherIds().values());
+        }
+    }
+
+    public static void lookup(School school, LookupType type, String id){
+        switch (type) {
+            case COURSE -> {
+                Course resultCourse = school.getCourseIds().get(id);
+                System.out.println(resultCourse.toString());
+            }
+            case STUDENT -> {
+                Student resultStudent = school.getStudentIds().get(id);
+                System.out.println(resultStudent.toString());
+            }
+            case TEACHER -> {
+                Teacher resultTeacher = school.getTeacherIds().get(id);
+                System.out.println(resultTeacher.toString());
+            }
+        }
+    }
+
+
+    public static void showProfit(School school){
+    school.setSchoolRevenue();
+    school.setExpenses();
+    school.setProfits();
+    System.out.println(school.getSchoolName() + "profits are: " + school.getProfits() );
+
+
+    }
+
+    public static void showRevenue(School school){
+        school.setSchoolRevenue();
+        System.out.println(school.getSchoolRevenue());
+
+    }
+    public static void showExpenses(School school){
+        school.setExpenses();
+        System.out.println(school.getExpenses());
+    }
 
 
 //    private static String schoolName;
@@ -58,4 +90,9 @@ public abstract class Admin {
 //    public static String getSchoolName() {
 //        return schoolName;
 //    }
+    //public static showProfit(School school){
+    // school.setSchoolRevenue();
+    // school.setExpenses();
+    // school.setProfit();
+    // return school.getProfits}
 }
