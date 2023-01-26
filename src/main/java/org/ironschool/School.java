@@ -85,8 +85,7 @@ public class School {
     public void setExpenses() {
         double sum =0;
         for ( Teacher t : this.teachers) {
-            int teachersAssigned = this.teachers.size();
-          double payment = teachersAssigned * t.getSalary();
+          double payment = t.getSalary();
           sum += payment;
 
         }
