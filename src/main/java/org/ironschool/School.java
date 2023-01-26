@@ -33,14 +33,14 @@ public class School {
 
     public void setSchoolName(String schoolName) {
        if (schoolName.isBlank()){
-           throw new IllegalArgumentException("Scholl name cannot be empty or blank");
+           throw new IllegalArgumentException("School name cannot be empty or blank");
        }
        String newSchoolName= schoolName.trim();
        newSchoolName=newSchoolName.substring(0,1).toUpperCase() + newSchoolName.substring(1).toLowerCase();
        this.schoolName=newSchoolName;
     }
 
-    public static List<Teacher> getTeachers() {
+    public List<Teacher> getTeachers() {
         return teachers;
     }
 
@@ -48,7 +48,7 @@ public class School {
         this.teachers.add(teacher);
     }
 
-    public static List<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
@@ -85,8 +85,7 @@ public class School {
     public void setExpenses() {
         double sum =0;
         for ( Teacher t : this.teachers) {
-            int teachersAssigned = this.teachers.size();
-          double payment = teachersAssigned * t.getSalary();
+          double payment = t.getSalary();
           sum += payment;
 
         }
@@ -103,11 +102,13 @@ public class School {
         this.profits = this.schoolRevenue - this.expenses;
     }
 
-    public HashMap<String, Student> getStudentIds(){return this.studentIds;}
+    public HashMap<String, Student> getStudentIds(){
+        return this.studentIds;}
     public void setStudentIds(Student student) {
             this.studentIds.put(student.getPersonalId(), student);
     }
-    public HashMap<String, Course> getCourseIds(){return this.courseIds;}
+    public HashMap<String, Course> getCourseIds(){
+        return this.courseIds;}
     public void setCourseIds(Course course) {
         this.courseIds.put(course.getCourseId(), course);
     }
@@ -132,32 +133,7 @@ public class School {
             System.out.println("Teacher not found");
         }
     }
-//    public Student getStudentById(String studentId) {
-//        for (Student student : students) {
-//            if (student.getPersonalId().equals(studentId)) {
-//                return student;
-//            }
-//        }
-//        return null;
-//    }
 
-//    public Course getCourseById(String courseId) {
-//        for (Course course : courses) {
-//            if (course.getCourseId().equalsIgnoreCase(courseId)) {
-//                return course;
-//            }
-//        }
-//        return null;
-//    }
-
-//    public Teacher getTeacherById(String teacherId) {
-//        for (Teacher teacher : teachers) {
-//            if (teacher.getPersonalId().equals(teacherId)) {
-//                return teacher;
-//            }
-//        }
-//        return null;
-//    }
     @Override
     public String toString() {
         return "School{" +
