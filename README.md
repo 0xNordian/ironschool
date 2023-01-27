@@ -116,6 +116,6 @@ Allows you to check the current school revenue, expenses and profit.
 
 `schoolProfit` is calculated substracting expenses (the sum of all teacher salaries) from revenue (the sum of the revenue of each course, calculated as price of course per student enrolled).
 
-#### Diagram Classes
+#### Class Diagram
 
 ![DiagramClasses.jpg](DiagramClasses.jpg)
