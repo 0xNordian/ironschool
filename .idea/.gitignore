@@ -30,3 +30,4 @@ out/
 /libraries/*
 /target/*
 /jpa-buddy.xml
+/libraries/

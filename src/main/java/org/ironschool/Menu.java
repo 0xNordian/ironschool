@@ -7,6 +7,8 @@ public class Menu {
 
         public static void menuStart() {
 
+        //SETUP
+
             Scanner sc = new Scanner(System.in);
             School school = null;
             while (school == null) {
@@ -19,7 +21,6 @@ public class Menu {
                 }
             }
             System.out.println("School Name:" + school.getSchoolName());
-
 
             // Create teachers
             System.out.println("Please enter the number of teachers to be created: ");
@@ -42,14 +43,26 @@ public class Menu {
                 System.out.println("Please enter the teacher's address " + (i + 1) + ": ");
                 String teacherAddress = sc.nextLine();
                 System.out.println("Please enter the teacher's salary " + (i + 1) + ": ");
-                double salary = sc.nextDouble();
-                sc.nextLine();
-                teacher = new Teacher(teacherName, teacherEmail, teacherAddress, salary);
-                school.setTeachers(teacher);
-                school.setTeacherIds(teacher); // creates hashmap of <TeacherId, Teacher>
-                //teachers.add(teacher);
+                double salary = 0;
+                while(salary == 0){
+                    try {
+                        salary = sc.nextDouble();
+                        sc.nextLine();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Please enter a valid number");
+                        sc.nextLine();
+                    }
+                }
+                try{
+                    teacher = new Teacher(teacherName, teacherEmail, teacherAddress, salary);
+                    school.setTeachers(teacher);
+                    school.setTeacherIds(teacher);
+                } catch(Exception e) {
+                    System.out.println("Error: Please provide valid inputs. Name and Address must be a String. Email requires a valid email. Salary requires a number.");
+                    i--;
+                }
             }
-            //school.setExpenses() <-- calculate
+            school.setExpenses();
             int index = 0;
             for (Teacher teacherDetail : school.getTeachers()) {
                 System.out.println("Teacher " + (index + 1) + " name: " + teacherDetail.getName());
@@ -62,22 +75,41 @@ public class Menu {
 
             // Create courses
             System.out.println("Please enter the number of courses to be created: ");
-            int numberOfCourses = sc.nextInt();
-            sc.nextLine();
-            //List<Course> courses = new ArrayList<>();
+            int numberOfCourses = 0;
+            while(numberOfCourses ==0){
+               try{ numberOfCourses = sc.nextInt();
+                sc.nextLine();
+               } catch(InputMismatchException e){
+                   System.out.println("Error: Please enter a valid number");
+                   sc.nextLine();
+               }
+            }
+
             for (int i = 0; i < numberOfCourses; i++) {
                 System.out.println("Please enter the name of course " + (i + 1) + ": ");
                 String name = sc.nextLine();
                 System.out.println("Please enter the course price " + (i + 1) + ": ");
-                double price = sc.nextDouble();
-                sc.nextLine();
-                Course course = new Course(name, price);
-                //courses.add(course);
-                school.setCourses(course);
-                school.setCourseIds(course); // creates hashmap of <CourseId, Course>
+                double price = 0;
+                while(price == 0){
+                    try{
+                        price = sc.nextDouble();
+                        sc.nextLine();
+                    } catch(InputMismatchException e){
+                        System.out.println("Error: Please enter a valid number");
+                        sc.nextLine();
+                    }
+                }
+                try{
+                    Course course = new Course(name, price);
+                    school.setCourses(course);
+                    school.setCourseIds(course); // creates hashmap of <CourseId, Course>
+                } catch(Exception e) {
+                    System.out.println("Error: Please provide valid inputs. Name must be a String. Price requires a positive number.");
+                    i--;
+                }
             }
 
-                index = 0;
+            index = 0;
             for (Course courseDetails : school.getCourses()) {
                 System.out.println("Course " + (index + 1) + " name: " + courseDetails.getCourseName());
                 System.out.println("Course " + (index + 1) + " price: " + courseDetails.getPrice());
@@ -87,9 +119,17 @@ public class Menu {
 
             //STUDENTS
             System.out.println("Please enter the number of students to be created: ");
-            int numberOfStudents = sc.nextInt();
-            sc.nextLine();
-            //List<Student> students = new ArrayList<>();
+            int numberOfStudents = 0;
+            while(numberOfStudents == 0){
+                try{
+                    numberOfStudents = sc.nextInt();
+                    sc.nextLine();
+                } catch (InputMismatchException e){
+                    System.out.println("Error: Please enter a valid number");
+                    sc.nextLine();
+                }
+            }
+
             Student student = null;
             for (int i = 0; i < numberOfStudents; i++) {
                 System.out.println("Please enter the student name " + (i + 1) + ": ");
@@ -98,24 +138,24 @@ public class Menu {
                 String studentEmail = sc.nextLine();
                 System.out.println("Please enter the student address " + (i + 1) + ": ");
                 String studentAddress = sc.nextLine();
-                student = new Student(studentName, studentEmail, studentAddress);
-                //students.add(student);
-                school.setStudents(student); // creates List<>
-                school.setStudentIds(student); // creates hashmap of <StudentId, Student>
+                try{
+                    student = new Student(studentName, studentEmail, studentAddress);
+                    school.setStudents(student);
+                    school.setStudentIds(student);
+                } catch (Exception e){
+                    System.out.println("Error: Please provide valid inputs. Name and Address must be a String. Email requires a valid email.");
+                    i--;
+                }
             }
-                index = 1;
+            index = 1;
             for (Student studentDetail : school.getStudents()) {
                 System.out.println("Student " + (index + 1) + " name: " + studentDetail.getName());
                 System.out.println("Student " + (index + 1) + " email: " + studentDetail.getEmail());
                 System.out.println("Student " + (index + 1) + " address: " + studentDetail.getAddress());
                 System.out.println("Student " + (index + 1) + " id: " + studentDetail.getPersonalId());
             }
-/*
-            System.out.println("Please enter the name or email of the teacher you want to search: ");
-            String searchQuery = sc.nextLine();
-            //sc.nextLine();
-            school.searchTeacher(searchQuery);
-*/
+
+        // MENU
         while (true) {
             System.out.println("Enter command:");
             System.out.println("1) Enroll");
