@@ -118,4 +118,4 @@ Allows you to check the current school revenue, expenses and profit.
 
 #### Diagram Classes
 
-![plot](./ironschool/DiagramClasses.jpg)
+![DiagramClasses.jpg](DiagramClasses.jpg)
