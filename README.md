@@ -1,3 +1,4 @@
+
 # IronSchool
 
 IronSchool is a School Management System that helps manage students, teachers and courses with basic functionalities.
@@ -115,3 +116,6 @@ Allows you to check the current school revenue, expenses and profit.
 
 `schoolProfit` is calculated substracting expenses (the sum of all teacher salaries) from revenue (the sum of the revenue of each course, calculated as price of course per student enrolled).
 
+#### Diagram Classes
+
+![DiagramClasses.jpg](DiagramClasses.jpg)
